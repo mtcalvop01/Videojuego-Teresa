@@ -1,0 +1,36 @@
+export class Producto{
+    constructor(nombre, imagen, precio, rareza, tipo, bonus){
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.precio = precio;
+        this.rareza = rareza;
+        this.tipo = tipo;
+        this.bonus = bonus;
+    }
+
+    getNombre(){
+        return this.nombre;
+    }
+
+    setNombre(nombre){
+        this.nombre = nombre;
+    }
+
+    getImagen(){
+        return this.imagen;
+    }
+
+    setImagen(imagen){
+        this.imagen = imagen;
+    }
+
+    getPrecio(){
+        return this.precio;
+    }
+
+    setPrecio(precio){
+        this.precio = precio;
+    }
+
+    
+}
