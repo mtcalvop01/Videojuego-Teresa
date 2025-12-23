@@ -1,10 +1,14 @@
+import { VIDA_BASE, TIPOS_PRODUCTOS, IMG_JUGADOR } from "./constants.js";
 export class Jugador{
-    constructor(nombre, avatar){
+    constructor(nombre, avatar = IMG_JUGADOR, ataque, defensa, vida = VIDA_BASE){
         this.nombre = nombre;
         this.avatar = avatar;
+        this.ataque = ataque;
+        this.defensa = defensa;
+        this.vida = vida;
         this.puntos = 0;
         this.inventario = [];
-        this.vida = 100;
+        this.vidaMaxima = VIDA_BASE;
     }
 
     getNombre(){
@@ -45,5 +49,43 @@ export class Jugador{
 
     setVidaMax(vida){
         this.vida=vida;
+    }
+
+    añadirObjeto(objeto){
+        this.inventario.push(objeto)
+    }
+
+    sumarPuntos(cantidad){
+        this.puntos = this.puntos + cantidad
+    }
+
+    ataqueTotal(){
+        let total = 0;
+        for(producto of this.inventario){
+            if(producto.tipo === TIPOS_PRODUCTOS.ARMA){
+                total += producto.bonus;
+            }
+        }
+        return total;
+    }
+
+    defensaTotal(){
+        let total = 0;
+        for(producto of this.inventario){
+            if(producto.tipo === TIPOS_PRODUCTOS.ARMADURA){
+                total += producto.bonus;
+            }
+        }
+        return total;
+    }
+
+    vidaTotal(){
+        let total = this.vidaMaxima;
+        for(producto of this.inventario){
+            if(producto.tipo === TIPOS_PRODUCTOS.CONSUMIBLE){
+                total += producto.bonus;
+            }
+        }
+        return total;
     }
 }

@@ -1,5 +1,7 @@
+
+import { MULTIPLICADOR_DANIO } from "./constants.js";
 export class Jefe extends Enemigo{
-    constructor(nombre, avatar, nivelAtaque, puntos, multiplicadorDanio = 1.2){
+    constructor(nombre, avatar, nivelAtaque, puntos, multiplicadorDanio = MULTIPLICADOR_DANIO){
         super(nombre, avatar, nivelAtaque, puntos);
         this.multiplicadorDanio = multiplicadorDanio;
     }
