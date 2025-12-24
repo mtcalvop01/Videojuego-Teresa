@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang='es'>
 
@@ -6,11 +5,119 @@
     <meta charset='utf-8'>  
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='style.css'>
-    <script src='script.js' defer></script>
+    <script type="module" src='main.js' defer></script>
+    
     <title>Videojuego Teresa</title>
 </head>
 <body>
-    <h1>...</h1>
+    <div id="contenedor">
+        <div id="escena1">
+            <h2>Creación del jugador</h2><br>
+            <form id="formularioJugador">
+                <label>Nombre:</label>
+                <input type="text" id="nombre" pattern="^[A-Z][A-Za-z ]{0,19}" title="Tiene que tener entre 1-20 caracteres y solo se permiten mayçusculas, minúsculas y espacios en blanco"><br><br>
+
+                <label>Ataque:</label>
+                <input type="number" id="ataque" value="0"><br><br>
+
+                <label>Defensa:</label>
+                <input type="number" id="defensa" value="0" pattern="^[0-9]+$"><br><br>
+
+                <label>Vida:</label>
+                <input type="number" id="vida" value="100" min="100" step="1"><br><br>
+
+                <input type="submit" id="crearJugador" value="Crear Jugador">
+            </form>
+        </div>
+
+        <div id="escena2">
+            <header class="header">
+                <h2 class="nombreJugador"></h2>
+            </header>
+            <h3>Mercado</h3>
+            <input type="button" id="botonMercado" value="Continuar">
+        </div>
+
+        <div id="escena3">
+            <header class="header">
+                <h2 class="nombreJugador"></h2>
+            </header>
+            <p><img class="imgJugador" src="./imagenes/imgJugador.png" alt="jugador"></p>
+            <h3 id="vidaJugador">❤️Vida:</h3><br><br>
+            <h3 id="ataqueJugador">⚔️Ataque:</h3><br><br>
+            <h3 id="defensaJugador">🛡️Defensa:</h3><br><br>
+            <input type="button" id="botonResumen" value="Continuar">
+        </div>
+
+        <div id="escena4">
+            <header class="header">
+                <h2 class="nombreJugador"></h2>
+            </header>
+            <div id="tarjetas">
+                <div id="tarj1">
+                    <p><img src="./imagenes/dragon.svg"></p>
+                    <p>Nombre enemigo</p>
+                    <p>Habilidad</p>
+                </div>
+
+                <div id="tarj2">
+                    <p><img src="./imagenes/dragon.svg"></p>
+                    <p>Nombre enemigo</p>
+                    <p>Habilidad</p>
+                </div>
+
+                <div id="tarj3">
+                    <p><img src="./imagenes/dragon.svg"></p>
+                    <p>Nombre enemigo</p>
+                    <p>Habilidad</p>
+                </div>
+
+                <div id="tarj4">
+                    <p><img src="./imagenes/dragon.svg"></p>
+                    <p>Nombre enemigo</p>
+                    <p>Habilidad</p>
+                </div>
+
+                <div id="tarj5">
+                    <p><img src="./imagenes/dragon.svg"></p>
+                    <p>Nombre enemigo</p>
+                    <p>Habilidad</p>
+                </div>
+
+                <div id="tarj6">
+                    <p><img src="./imagenes/dragon.svg"></p>
+                    <p>Nombre enemigo</p>
+                    <p>Habilidad</p>
+                </div>
+            </div>
+            <input type="button" id="botonEnemigos" value="Comenzar Batallas">
+        </div>
+
+        <div id="escena5">
+            <header class="header">
+                <h2 class="nombreJugador"></h2>
+            </header>
+            <h3>Batallas</h3>
+        </div>
+
+        <div id="escena6">
+            <header class="header">
+                <h2 class="nombreJugador"></h2>
+            </header>
+            <h3>Resultado Final</h3>
+        </div>
+
+
+
+
+
+        <footer>
+                <div id="dinero">
+                    <img src="./imagenes/dinero.svg" alt="dinero">
+                    <span id="monedas"></span>
+                </div>
+        </footer>
+    </div>
 </body>
 </html>
 
