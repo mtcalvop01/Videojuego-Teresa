@@ -11,23 +11,41 @@
 </head>
 <body>
     <div id="contenedor">
-        <div id="escena1">
-            <h2>Creación del jugador</h2><br>
+        <div id="escena1"><br>
+            <h1>Creación del Jugador</h1>
             <form id="formularioJugador">
-                <label>Nombre:</label>
-                <input type="text" id="nombre" pattern="^[A-Z][A-Za-z ]{0,19}" title="Tiene que tener entre 1-20 caracteres y solo se permiten mayçusculas, minúsculas y espacios en blanco"><br><br>
+                <label>🧝‍♀️Nombre:</label>
+                <input type="text" id="nombre" pattern="^[A-Z][A-Za-z ]{0,19}" required title="Tiene que tener entre 1-20 caracteres y solo se permiten mayçusculas, minúsculas y espacios en blanco">
+                <div id="mensaje"></div>
 
-                <label>Ataque:</label>
-                <input type="number" id="ataque" value="0"><br><br>
+                <label>⚔️Ataque:</label>
+                <input type="number" id="ataque" value="0" min="0" max="10"><br><br>
 
-                <label>Defensa:</label>
-                <input type="number" id="defensa" value="0" pattern="^[0-9]+$"><br><br>
+                <label>🛡️Defensa:</label>
+                <input type="number" id="defensa" value="0" min="0" max="10" pattern="^[0-9]+$"><br><br>
 
-                <label>Vida:</label>
-                <input type="number" id="vida" value="100" min="100" step="1"><br><br>
+                <label>❤️Vida:</label>
+                <input type="number" id="vida" value="100" min="100" max="110" step="1"><br><br>
 
-                <input type="submit" id="crearJugador" value="Crear Jugador">
+                <label id="puntos">⭐Puntos disponibles:<span id="puntosDisponibles">10</span></label>
+                <div id="mensajeError"></div>
             </form>
+            <br>
+                <input type="submit" id="crearJugador" value="Crear Jugador">
+        </div>
+
+        <div id="escenaEstadoJugador">
+            <header class="header">
+                <h2 class="nombreJugador"></h2>
+            </header>
+            <div class="tarjetaJugador">
+                <img src="./imagenes/imgGuerrera.svg">
+                <h3 id="nomJugador"></h3>
+                <h3 class="ataqueJugador"></h3>
+                <h3 class="defensaJugador"></h3>
+                <h3 class="vidaJugador"></h3>
+            </div>
+            <input type="submit" id="estadoJugadorbtn" value="Continuar"></inpUt>
         </div>
 
         <div id="escena2">
@@ -35,6 +53,9 @@
                 <h2 class="nombreJugador"></h2>
             </header>
             <h3>Mercado</h3>
+            <div id="tarjeta-Mercado">
+                
+            </div><br><br>
             <input type="button" id="botonMercado" value="Continuar">
         </div>
 
@@ -42,54 +63,22 @@
             <header class="header">
                 <h2 class="nombreJugador"></h2>
             </header>
-            <p><img class="imgJugador" src="./imagenes/imgJugador.png" alt="jugador"></p>
-            <h3 id="vidaJugador">❤️Vida:</h3><br><br>
-            <h3 id="ataqueJugador">⚔️Ataque:</h3><br><br>
-            <h3 id="defensaJugador">🛡️Defensa:</h3><br><br>
+            <div class="tarjetaJugador">
+                <img src="./imagenes/imgGuerrera.svg" alt="jugador">
+                <h3 class="vidaJugador">❤️Vida:</h3>
+                <h3 class="ataqueJugador">⚔️Ataque:</h3>
+                <h3 class="defensaJugador">🛡️Defensa:</h3>
+            </div>
             <input type="button" id="botonResumen" value="Continuar">
         </div>
 
         <div id="escena4">
             <header class="header">
                 <h2 class="nombreJugador"></h2>
-            </header>
+            </header><br><br>
             <div id="tarjetas">
-                <div id="tarj1">
-                    <p><img src="./imagenes/dragon.svg"></p>
-                    <p>Nombre enemigo</p>
-                    <p>Habilidad</p>
-                </div>
-
-                <div id="tarj2">
-                    <p><img src="./imagenes/dragon.svg"></p>
-                    <p>Nombre enemigo</p>
-                    <p>Habilidad</p>
-                </div>
-
-                <div id="tarj3">
-                    <p><img src="./imagenes/dragon.svg"></p>
-                    <p>Nombre enemigo</p>
-                    <p>Habilidad</p>
-                </div>
-
-                <div id="tarj4">
-                    <p><img src="./imagenes/dragon.svg"></p>
-                    <p>Nombre enemigo</p>
-                    <p>Habilidad</p>
-                </div>
-
-                <div id="tarj5">
-                    <p><img src="./imagenes/dragon.svg"></p>
-                    <p>Nombre enemigo</p>
-                    <p>Habilidad</p>
-                </div>
-
-                <div id="tarj6">
-                    <p><img src="./imagenes/dragon.svg"></p>
-                    <p>Nombre enemigo</p>
-                    <p>Habilidad</p>
-                </div>
-            </div>
+                
+            </div><br>
             <input type="button" id="botonEnemigos" value="Comenzar Batallas">
         </div>
 

@@ -1,14 +1,15 @@
-import { VIDA_BASE, TIPOS_PRODUCTOS, IMG_JUGADOR } from "./constants.js";
+import { VIDA_BASE, TIPOS_PRODUCTOS, IMG_JUGADOR, DINERO } from "./constants.js";
 export class Jugador{
-    constructor(nombre, avatar = IMG_JUGADOR, ataque, defensa, vida = VIDA_BASE){
+    constructor(nombre, ataque, defensa, vida = VIDA_BASE){
         this.nombre = nombre;
-        this.avatar = avatar;
+        this.avatar = IMG_JUGADOR;
         this.ataque = ataque;
         this.defensa = defensa;
         this.vida = vida;
         this.puntos = 0;
         this.inventario = [];
         this.vidaMaxima = VIDA_BASE;
+        this.dinero = DINERO
     }
 
     getNombre(){

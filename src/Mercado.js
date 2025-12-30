@@ -22,14 +22,14 @@ export class Mercado{
     }
 }
 
-const mercadoArray = [
-    new Producto("Espada de Hierro", "./Imagenes/espada_hierro.svg", 4000, "común", "arma", { ataque: 5 }),
-    new Producto("Armadura de Cuero", "./Imagenes/armadura.svg", 4000, "común", "armadura", { defensa: 3 }),
-    new Producto("Poción de Vida", "./Imagenes/pocion_vida.svg", 3000, "común", "consumible", { curacion: 20 }),
-    new Producto("Cuchillo de la Muerte", "./Imagenes/cuchillo.svg", 6000, "raro", "arma", { ataque: 12 }),
-    new Producto("Escudo del Dragón", "./Imagenes/escudo_dragon.svg", 6000, "raro", "armadura", { defensa: 10 }),
-    new Producto("Espada Legendaria", "./Imagenes/espada_legendaria.svg", 8000, "legendario", "arma", { ataque: 25 }),
-    new Producto("Armadura Sagrada", "./Imagenes/armadura_sagrada.svg", 8000, "legendario", "armadura", { defensa: 20 }),
-    new Producto("Anillo de Mana", "./Imagenes/anillo.svg", 7000, "raro", "accesorio", { mana: 30 }),      
-    new Producto("Botas del Veloz", "./Imagenes/botas.svg", 5000, "común", "armadura", { velocidad: 5 })
+export const mercadoArray = [
+    new Producto("Espada de Hierro", "./Imagenes/espada_hierro.svg", 200, "común", "arma", { ataque: 5 }),
+    new Producto("Armadura de Cuero", "./Imagenes/armadura.svg", 200, "común", "armadura", { defensa: 3 }),
+    new Producto("Poción de Vida", "./Imagenes/pocion_vida.svg", 150, "común", "consumible", { curacion: 20 }),
+    new Producto("Cuchillo de la Muerte", "./Imagenes/cuchillo.svg", 250, "raro", "arma", { ataque: 12 }),
+    new Producto("Escudo del Dragón", "./Imagenes/escudo_dragon.svg", 350, "raro", "armadura", { defensa: 10 }),
+    new Producto("Espada Legendaria", "./Imagenes/espada_legendaria.svg", 350, "legendario", "arma", { ataque: 25 }),
+    new Producto("Armadura Sagrada", "./Imagenes/armadura_sagrada.svg", 400, "legendario", "armadura", { defensa: 20 }),
+    new Producto("Anillo de Mana", "./Imagenes/anillo.svg", 500, "raro", "accesorio", { mana: 30 }),      
+    new Producto("Botas del Veloz", "./Imagenes/botas.svg", 500, "común", "armadura", { velocidad: 5 })
 ];

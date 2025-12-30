@@ -1,9 +1,12 @@
 export class Enemigo{
-    constructor(nombre, avatar){
+    constructor(nombre, avatar, tipo = "Enemigo", nivelAtaque, VIDA_BASE){
         this.nombre = nombre;
         this.avatar = avatar;
-        this.nivelAtaque = 5;
+        this.tipo = tipo;
+        this.ataque = nivelAtaque;
         this.puntos = 100;
+        this.vida = vida;
+        this.vidaMaxima = VIDA_BASE;
     }
 
     getNombre(){
