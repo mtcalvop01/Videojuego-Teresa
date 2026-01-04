@@ -10,6 +10,9 @@ const escena3 = document.getElementById("escena3");
 const escena4 = document.getElementById("escena4");
 const escena5 = document.getElementById("escena5");
 const escena6 = document.getElementById("escena6");
+const escena7 = document.getElementById("escena7");
+
+let jugador;
 
 const formulario = document.getElementById("formularioJugador");
 
@@ -107,7 +110,7 @@ defensaInput.addEventListener("input", () => {
     }
 });
 
-document.getElementById("crearJugador").addEventListener("click", () =>{
+document.getElementById("crearJugador").addEventListener("click", (event) =>{
     event.preventDefault();
     
     let mensajeAviso = document.getElementById("mensaje");
@@ -119,6 +122,8 @@ document.getElementById("crearJugador").addEventListener("click", () =>{
         mensajeAviso.textContent = "El nombre es obligatorio";
         nombreInput.focus();
         return;
+    }else{
+        mensajeAviso.textContent = "";
     }
 
     if(!formulario.checkValidity()){
@@ -139,15 +144,12 @@ document.getElementById("crearJugador").addEventListener("click", () =>{
 
     mensaje.textContent = "";
 
-    const jugador = new Jugador(nombre, ataque, defensa, vida);
+    jugador = new Jugador(nombre, ataque, defensa, vida);
 
     
 /*Una vez se ha creado el jugador, para mostrar los datos del formulario hacemos lo siguiente:*/
     let nombreJugador = document.querySelectorAll(".nombreJugador");
     nombreJugador.forEach(nombre => nombre.textContent = jugador.nombre)
-
-    let nomJugador = document.getElementById("nomJugador");
-    nomJugador.textContent = "Nombre: " + jugador.nombre;
 
     let vidaJugador = document.querySelectorAll(".vidaJugador");
     vidaJugador.forEach(vida => vida.textContent = "❤️Vida: " + jugador.vida)
@@ -190,6 +192,9 @@ for(const enemigo of EnemigosData){
 
 const contenedorMercado = document.getElementById("tarjeta-Mercado");
 
+const productosSeleccionados = new Set();
+
+
 for(const mercado of mercadoArray){
     let tarjMercadoIndividual = document.createElement("div");
     tarjMercadoIndividual.className = "tarj";
@@ -207,9 +212,47 @@ for(const mercado of mercadoArray){
     rarezaProducto.textContent = "🔮Rareza: " + mercado.rareza;
 
     let botonAvanzarMercado = document.createElement("button");
-    botonAvanzarMercado.className = "btnAvanzarMercado";
+    botonAvanzarMercado.className = "anadirCarro";
     botonAvanzarMercado.type = "submit";
-    botonAvanzarMercado.textContent = "Comprar";
+    botonAvanzarMercado.textContent = "Añadir";
+
+    botonAvanzarMercado.addEventListener("click", () => {
+        const cestaMercado = document.getElementById("cestaMercado");
+        const divs = cestaMercado.children;
+        if(productosSeleccionados.has(mercado)){
+            productosSeleccionados.delete(mercado);
+            jugador.dinero = jugador.dinero + mercado.precio;
+            dinero.textContent = jugador.dinero;
+            tarjMercadoIndividual.classList.remove('tarjetaMercado');
+            for(let div of divs){
+                let img = div.querySelector(`img[src='${mercado.imagen}']`)
+                if(img){
+                    div.innerHTML = "";
+                    break;
+                }
+            }
+        }else{
+            if(jugador.dinero >= mercado.precio){
+            productosSeleccionados.add(mercado);
+            jugador.anadirObjeto(mercado);
+            jugador.dinero = jugador.dinero - mercado.precio;
+            dinero.textContent = jugador.dinero;
+            tarjMercadoIndividual.classList.add('tarjetaMercado');
+            for(let div of divs){
+                if(div.querySelector('img') === null ){
+                    let img = document.createElement("img");
+                    img.src = mercado.imagen;
+                    img.alt = mercado.nombre;
+                    div.appendChild(img);
+                    break;
+                }
+            }
+            
+            }else{
+                botonAvanzarMercado.style.display = "block";
+            }
+        }
+    });
 
     tarjMercadoIndividual.appendChild(imagenProducto);
     tarjMercadoIndividual.appendChild(nombreProducto);
@@ -250,4 +293,14 @@ document.getElementById("botonResumen").addEventListener("click", () => {
 document.getElementById("botonEnemigos").addEventListener("click", () => {
     escena4.style.display = "none";
     escena5.style.display = "block";
+});
+
+document.getElementById("batallasBtn").addEventListener("click", () => {
+    escena5.style.display = "none";
+    escena6.style.display = "block";
+});
+
+document.getElementById("resultadoBtn").addEventListener("click", () => {
+    escena6.style.display = "none";
+    escena7.style.display = "block";
 });

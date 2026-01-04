@@ -52,7 +52,7 @@ export class Jugador{
         this.vida=vida;
     }
 
-    añadirObjeto(objeto){
+    anadirObjeto(objeto){
         this.inventario.push(objeto)
     }
 

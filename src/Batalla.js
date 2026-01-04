@@ -19,11 +19,11 @@ export class Batalla{
         let enemigoVivo = auxVidaEnemigo > 0
 
         if(jugadorVivo && !enemigoVivo){
-            return {ganador: jugadorVivo.nombre, puntos: this.calcularPuntos(enemigo) }
+            return {ganador: jugador.nombre, puntos: this.calcularPuntos(enemigo) }
         }
 
         if(!jugadorVivo && enemigoVivo){
-            return {ganador: enemigoVivo.nombre}
+            return {ganador: enemigo.nombre, puntos: 0}
         }
     }
 
