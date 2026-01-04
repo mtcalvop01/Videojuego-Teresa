@@ -93,7 +93,7 @@
 }
 
 .anadirCarro{
-    display: block;
+    display: inline-block;
     color: black;
     font-weight: bold;
     font-size: 1.2rem;
@@ -105,6 +105,23 @@
     transition: all 0.2s ease-in-out;
     margin: 1% auto;
     background-color: rgb(243, 243, 104);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.saltar {
+    animation: salto 0.5s ease;
+}
+
+@keyframes salto {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* hacia arriba */
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 #crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover {
@@ -186,7 +203,15 @@
     align-items: center;
     justify-content: space-around;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease;
 }
+
+.tarj:hover{
+    box-shadow: 0 8px 20px rgb(248, 247, 247);
+}
+
 
 .tarjetaMercado{
     border: 2px solid black;
@@ -244,8 +269,12 @@ footer{
     height: auto;
     display: block;
     margin: auto;
+    transition: transform 0.2s ease;
 }
 
+#cestaMercado div img:hover{
+    transform: scale(1.1);
+}
 
 #producto1, #producto2, #producto3, #producto4, #producto5, #producto6{
     border: 2px solid black;

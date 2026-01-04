@@ -1,5 +1,5 @@
 import { Jugador } from './src/Jugador.js';
-import {EnemigosData} from './src/EnemigosData.js';
+import { EnemigosData } from './src/EnemigosData.js';
 import { mercadoArray } from './src/Mercado.js';
 import { VIDA_BASE, TIPOS_PRODUCTOS, MULTIPLICADOR_DANIO, PUNTOS_BASE_VICTORIA, UMBRAL_VETERANO, DINERO } from './src/constants.js';
 
@@ -31,24 +31,24 @@ ataqueInput.addEventListener("input", () => {
     let defensa = Number(defensaInput.value);
     let vida = Number(vidaInput.value);
 
-    let vidaExtra = vida -100;
+    let vidaExtra = vida - 100;
     let puntosUsados = ataque + defensa + vidaExtra;
     let puntosRestantes = 10 - puntosUsados;
 
-    if(puntosRestantes < 0){
+    if (puntosRestantes < 0) {
         puntosRestantes = 0;
     }
 
     puntosDisponibles.textContent = puntosRestantes;
 
-    if(puntosUsados === 0 || puntosUsados > 10){
+    if (puntosUsados === 0 || puntosUsados > 10) {
         crearJugadorBtn.disabled = true;
-        if(puntosUsados > 10){
+        if (puntosUsados > 10) {
             mensaje.textContent = "Solo puede repartir 10 puntos."
-        }else{
+        } else {
             mensaje.textContent = "";
         }
-    }else{
+    } else {
         crearJugadorBtn.disabled = false;
         mensaje.textContent = "";
     }
@@ -59,24 +59,24 @@ vidaInput.addEventListener("input", () => {
     let defensa = Number(defensaInput.value);
     let vida = Number(vidaInput.value);
 
-    let vidaExtra = vida -100;
+    let vidaExtra = vida - 100;
     let puntosUsados = ataque + defensa + vidaExtra;
     let puntosRestantes = 10 - puntosUsados;
 
-    if(puntosRestantes < 0){
+    if (puntosRestantes < 0) {
         puntosRestantes = 0;
     }
 
     puntosDisponibles.textContent = puntosRestantes;
 
-    if(puntosUsados === 0 || puntosUsados > 10){
+    if (puntosUsados === 0 || puntosUsados > 10) {
         crearJugadorBtn.disabled = true;
-        if(puntosUsados > 10){
+        if (puntosUsados > 10) {
             mensaje.textContent = "Solo puede repartir 10 puntos."
-        }else{
+        } else {
             mensaje.textContent = "";
         }
-    }else{
+    } else {
         crearJugadorBtn.disabled = false;
         mensaje.textContent = "";
     }
@@ -87,46 +87,46 @@ defensaInput.addEventListener("input", () => {
     let defensa = Number(defensaInput.value);
     let vida = Number(vidaInput.value);
 
-    let vidaExtra = vida -100;
+    let vidaExtra = vida - 100;
     let puntosUsados = ataque + defensa + vidaExtra;
     let puntosRestantes = 10 - puntosUsados;
 
-    if(puntosRestantes < 0){
+    if (puntosRestantes < 0) {
         puntosRestantes = 0;
     }
-            puntosDisponibles.textContent = puntosRestantes;
+    puntosDisponibles.textContent = puntosRestantes;
 
 
-    if(puntosUsados === 0 || puntosUsados > 10){
+    if (puntosUsados === 0 || puntosUsados > 10) {
         crearJugadorBtn.disabled = true;
-        if(puntosUsados > 10){
+        if (puntosUsados > 10) {
             mensaje.textContent = "Solo puede repartir 10 puntos."
-        }else{
+        } else {
             mensaje.textContent = "";
         }
-    }else{
+    } else {
         crearJugadorBtn.disabled = false;
         mensaje.textContent = "";
     }
 });
 
-document.getElementById("crearJugador").addEventListener("click", (event) =>{
+document.getElementById("crearJugador").addEventListener("click", (event) => {
     event.preventDefault();
-    
+
     let mensajeAviso = document.getElementById("mensaje");
 
     let nombreInput = document.getElementById("nombre");
     let nombre = nombreInput.value.trim();
 
-    if(nombre === ""){
+    if (nombre === "") {
         mensajeAviso.textContent = "El nombre es obligatorio";
         nombreInput.focus();
         return;
-    }else{
+    } else {
         mensajeAviso.textContent = "";
     }
 
-    if(!formulario.checkValidity()){
+    if (!formulario.checkValidity()) {
         return;
     }
 
@@ -137,7 +137,7 @@ document.getElementById("crearJugador").addEventListener("click", (event) =>{
     let vidaExtra = vida - 100;
     let puntosUsados = ataque + defensa + vidaExtra;
 
-    if(ataque < 0 || defensa < 0 || vida < 100 || puntosUsados > 10){
+    if (ataque < 0 || defensa < 0 || vida < 100 || puntosUsados > 10) {
         mensaje.textContent = "Valores no válidos o excede 10 puntos";
         return;
     }
@@ -146,8 +146,8 @@ document.getElementById("crearJugador").addEventListener("click", (event) =>{
 
     jugador = new Jugador(nombre, ataque, defensa, vida);
 
-    
-/*Una vez se ha creado el jugador, para mostrar los datos del formulario hacemos lo siguiente:*/
+
+    /*Una vez se ha creado el jugador, para mostrar los datos del formulario hacemos lo siguiente:*/
     let nombreJugador = document.querySelectorAll(".nombreJugador");
     nombreJugador.forEach(nombre => nombre.textContent = jugador.nombre)
 
@@ -156,7 +156,7 @@ document.getElementById("crearJugador").addEventListener("click", (event) =>{
 
     let ataqueJugador = document.querySelectorAll(".ataqueJugador");
     ataqueJugador.forEach(ataque => ataque.textContent = "⚔️Ataque: " + jugador.ataque)
-    
+
     let defensaJugador = document.querySelectorAll(".defensaJugador");
     defensaJugador.forEach(defensa => defensa.textContent = "🛡️Defensa: " + jugador.defensa)
 
@@ -166,7 +166,7 @@ document.getElementById("crearJugador").addEventListener("click", (event) =>{
 
 const contenedorTarjetas = document.getElementById("tarjetas");
 
-for(const enemigo of EnemigosData){
+for (const enemigo of EnemigosData) {
     let tarjetasIndividuales = document.createElement("div");
     tarjetasIndividuales.className = "tarj";
 
@@ -195,7 +195,7 @@ const contenedorMercado = document.getElementById("tarjeta-Mercado");
 const productosSeleccionados = new Set();
 
 
-for(const mercado of mercadoArray){
+for (const mercado of mercadoArray) {
     let tarjMercadoIndividual = document.createElement("div");
     tarjMercadoIndividual.className = "tarj";
 
@@ -217,38 +217,51 @@ for(const mercado of mercadoArray){
     botonAvanzarMercado.textContent = "Añadir";
 
     botonAvanzarMercado.addEventListener("click", () => {
+
+        botonAvanzarMercado.style.animation = "salto 0.5s ease";
+        setTimeout(() => {
+            botonAvanzarMercado.style.animation = "";
+        }, 500);
+
+        botonAvanzarMercado.textContent = "🛒";
+        setTimeout(() => {
+            botonAvanzarMercado.textContent = "Quitar";
+        }, 1000);
+
         const cestaMercado = document.getElementById("cestaMercado");
         const divs = cestaMercado.children;
-        if(productosSeleccionados.has(mercado)){
+        if (productosSeleccionados.has(mercado)) {
             productosSeleccionados.delete(mercado);
             jugador.dinero = jugador.dinero + mercado.precio;
             dinero.textContent = jugador.dinero;
             tarjMercadoIndividual.classList.remove('tarjetaMercado');
-            for(let div of divs){
+            for (let div of divs) {
                 let img = div.querySelector(`img[src='${mercado.imagen}']`)
-                if(img){
+                if (img) {
                     div.innerHTML = "";
                     break;
                 }
             }
-        }else{
-            if(jugador.dinero >= mercado.precio){
-            productosSeleccionados.add(mercado);
-            jugador.anadirObjeto(mercado);
-            jugador.dinero = jugador.dinero - mercado.precio;
-            dinero.textContent = jugador.dinero;
-            tarjMercadoIndividual.classList.add('tarjetaMercado');
-            for(let div of divs){
-                if(div.querySelector('img') === null ){
-                    let img = document.createElement("img");
-                    img.src = mercado.imagen;
-                    img.alt = mercado.nombre;
-                    div.appendChild(img);
-                    break;
+        } else {
+            if (jugador.dinero >= mercado.precio) {
+                productosSeleccionados.add(mercado);
+                jugador.anadirObjeto(mercado);
+                jugador.dinero = jugador.dinero - mercado.precio;
+                dinero.textContent = jugador.dinero;
+                tarjMercadoIndividual.classList.add('tarjetaMercado');
+                for (let div of divs) {
+                    if (div.querySelector('img') === null) {
+                        let img = document.createElement("img");
+                        img.src = mercado.imagen;
+                        img.alt = mercado.nombre;
+                        div.appendChild(img);
+                        break;
+                    }
                 }
-            }
-            
-            }else{
+
+
+
+            } else {
                 botonAvanzarMercado.style.display = "block";
             }
         }
