@@ -124,6 +124,60 @@
     }
 }
 
+#batallas{
+    background-color: #97623f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    margin: 20px 0;
+    position: relative;
+    overflow: visible;
+}
+
+.contenedorImgBatallas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    position: relative;
+    margin: 20px 0;
+}
+
+.imgBatallaJugador{
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    animation: movimientoJugador 3s ease;
+}
+
+@keyframes movimientoJugador{
+    0%{
+        transform: translateX(-300px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+
+.imgBatallaEnemigo {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    animation: movimientoEnemigo 3s ease;
+}
+
+@keyframes movimientoEnemigo{
+    0%{
+        transform: translateX(300px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
+
 #crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover {
     background-color: #855d3a; 
     box-shadow: 0 0 10px #eb7231;
@@ -296,15 +350,15 @@ footer{
 }
 
 #dinero img{
-    width: 50px;
+    width: 70px;
     height: auto;
     display: block;
 }
 
 #monedas{
     position: absolute;
-    top: 14px;
-    left: 13px;
+    top: 35px;
+    left: 22px;
     font-size: 15px;
     font-weight: bold;
     z-index: 1;
@@ -319,5 +373,29 @@ footer{
     }
     100%{
         transform: translateX(0);
+    }
+}
+
+.imgAnimacionMonedas {
+    position: absolute;
+    top: -100px;              
+    width: 40px;
+    height: 40px;
+    animation: caerMoneda 3s ease-in forwards;
+    z-index: 1;
+}
+
+@keyframes caerMoneda {
+    0% {
+        transform: translateY(0px) rotateY(0deg) rotateZ(0deg);  
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(150px) rotateY(360deg) rotateZ(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(300px) rotateY(720deg) rotateZ(360deg);
+        opacity: 0;
     }
 }

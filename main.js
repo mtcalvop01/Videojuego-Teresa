@@ -1,7 +1,9 @@
 import { Jugador } from './src/Jugador.js';
+import { Batalla } from './src/Batalla.js';
 import { EnemigosData } from './src/EnemigosData.js';
 import { mercadoArray } from './src/Mercado.js';
 import { VIDA_BASE, TIPOS_PRODUCTOS, MULTIPLICADOR_DANIO, PUNTOS_BASE_VICTORIA, UMBRAL_VETERANO, DINERO } from './src/constants.js';
+import { Enemigo } from './src/Enemigos.js';
 
 const escena1 = document.getElementById("escena1");
 const escenaEstadoJugador = document.getElementById("escenaEstadoJugador");
@@ -177,10 +179,10 @@ for (const enemigo of EnemigosData) {
     imagenEnemigos.src = enemigo.avatar;
 
     let vidaEnemigo = document.createElement("h3");
-    vidaEnemigo.textContent = "❤️Vida: " + enemigo.vidaMaxima;
+    vidaEnemigo.textContent = "❤️Vida: " + enemigo.vida;
 
     let ataqueEnemigo = document.createElement("h3");
-    ataqueEnemigo.textContent = "⚔️Ataque: " + enemigo.ataque;
+    ataqueEnemigo.textContent = "⚔️Ataque: " + enemigo.nivelAtaque;
 
     tarjetasIndividuales.appendChild(nombreEnemigo);
     tarjetasIndividuales.appendChild(imagenEnemigos);
@@ -258,9 +260,6 @@ for (const mercado of mercadoArray) {
                         break;
                     }
                 }
-
-
-
             } else {
                 botonAvanzarMercado.style.display = "block";
             }
@@ -276,17 +275,8 @@ for (const mercado of mercadoArray) {
     contenedorMercado.appendChild(tarjMercadoIndividual);
 }
 
-
-
-
-
-
-
-
-
-
 const dinero = document.getElementById("monedas");
-    dinero.textContent = DINERO;
+dinero.textContent = DINERO;
 
 document.getElementById("estadoJugadorbtn").addEventListener("click", () => {
     escenaEstadoJugador.style.display = "none";
@@ -303,15 +293,144 @@ document.getElementById("botonResumen").addEventListener("click", () => {
     escena4.style.display = "block";
 });
 
+let indiceBatallaActual = 0;
+
 document.getElementById("botonEnemigos").addEventListener("click", () => {
     escena4.style.display = "none";
     escena5.style.display = "block";
+
+    const batalla = document.getElementById("batallas");
+    const continuarBtn = document.getElementById("batallasBtn");
+    const contenedorImg = document.createElement("div");
+    contenedorImg.className = "contenedorImgBatallas";
+
+    {
+        if (jugador.vida <= 0) {
+            escena5.style.display = "none";
+            escena6.style.display = "block";
+            return;
+        }
+
+        batalla.innerHTML = "";
+
+        if (indiceBatallaActual >= EnemigosData.length) {
+            escena5.style.display = "none";
+            escena6.style.display = "block";
+            return;
+        }
+
+        const enemigoActual = EnemigosData[indiceBatallaActual];
+        const imagenJugador = document.createElement("img");
+        imagenJugador.src = "./imagenes/imgGuerrera.svg";
+        imagenJugador.alt = jugador.nombre;
+        imagenJugador.className = "imgBatallaJugador";
+
+        const imagenEnemigo = document.createElement("img");
+        imagenEnemigo.src = enemigoActual.avatar;
+        imagenEnemigo.alt = enemigoActual.nombre;
+        imagenEnemigo.className = "imgBatallaEnemigo";
+
+        const vs = document.createElement('span');
+        vs.textContent = "VS";
+        vs.className = "vsTexto";
+
+        contenedorImg.appendChild(imagenJugador);
+        contenedorImg.appendChild(vs);
+        contenedorImg.appendChild(imagenEnemigo);
+
+        const resultado = new Batalla().batalla(enemigoActual, jugador);
+        jugador.vida = Math.max(resultado.vidaJugadorFinal, 0);
+
+        const resultadoTexto = document.createElement("p");
+        resultadoTexto.className = "resultadoBatalla";
+        batalla.appendChild(contenedorImg);
+
+        if (resultado.vidaJugadorFinal > 0) {
+            resultadoTexto.textContent = `Ganador: ${jugador.nombre}`;
+            jugador.sumarPuntos(resultado.puntos);
+            for (let i = 0; i < 3; i++) {
+                const imgAnimacionMonedas = document.createElement("img");
+                imgAnimacionMonedas.className = "imgAnimacionMonedas";
+                imgAnimacionMonedas.src = "./imagenes/moneda.png";
+                imgAnimacionMonedas.alt = "monedas";
+                imgAnimacionMonedas.style.left = `${25 + (i * 25)}%`;  // 25%, 50%, 75%
+                batalla.appendChild(imgAnimacionMonedas);
+            }
+        } else {
+            resultadoTexto.textContent = `Ganador: ${enemigoActual.nombre}`;
+            jugador.vida = 0;
+        }
+        batalla.appendChild(resultadoTexto);
+
+        indiceBatallaActual++;
+    }
+
+    continuarBtn.onclick = () => {
+        if (jugador.vida <= 0) {
+            escena5.style.display = "none";
+            escena6.style.display = "block";
+            return;
+        }
+
+
+        if (indiceBatallaActual >= EnemigosData.length) {
+            escena5.style.display = "none";
+            escena6.style.display = "block";
+            return
+        }
+
+        const enemigoActual = EnemigosData[indiceBatallaActual];
+
+        const contenedorImg = document.createElement("div");
+        contenedorImg.className = "contenedorImgBatallas";
+
+        const imagenJugador = document.createElement("img");
+        imagenJugador.src = "./imagenes/imgGuerrera.svg";
+        imagenJugador.alt = jugador.nombre;
+        imagenJugador.className = "imgBatallaJugador";
+
+        const imagenEnemigo = document.createElement("img");
+        imagenEnemigo.src = enemigoActual.avatar;
+        imagenEnemigo.alt = enemigoActual.nombre;
+        imagenEnemigo.className = "imgBatallaEnemigo";
+
+        const vs = document.createElement('span');
+        vs.textContent = "VS";
+        vs.className = "vsTexto";
+
+        contenedorImg.appendChild(imagenJugador);
+        contenedorImg.appendChild(vs);
+        contenedorImg.appendChild(imagenEnemigo);
+
+        const resultado = new Batalla().batalla(enemigoActual, jugador);
+
+        batalla.innerHTML = "";
+        batalla.appendChild(contenedorImg);
+
+        jugador.vida = Math.max(resultado.vidaJugadorFinal, 0)
+        const resultadoTexto = document.createElement("p");
+        resultadoTexto.className = "resultadoBatalla";
+        if (resultado.vidaJugadorFinal > 0) {
+            resultadoTexto.textContent = `Ganador: ${jugador.nombre}`;
+            jugador.sumarPuntos(resultado.puntos);
+            for (let i = 0; i < 3; i++) {
+                const imgAnimacionMonedas = document.createElement("img");
+                imgAnimacionMonedas.className = "imgAnimacionMonedas";
+                imgAnimacionMonedas.src = "./imagenes/moneda.png";
+                imgAnimacionMonedas.alt = "monedas";
+                imgAnimacionMonedas.style.left = `${25 + (i * 25)}%`;  // 25%, 50%, 75%
+                batalla.appendChild(imgAnimacionMonedas);
+            }
+        } else {
+            resultadoTexto.textContent = `Ganador: ${enemigoActual.nombre}`;
+            jugador.vida = 0;
+        }
+        batalla.appendChild(resultadoTexto);
+
+        indiceBatallaActual++;
+    }
 });
 
-document.getElementById("batallasBtn").addEventListener("click", () => {
-    escena5.style.display = "none";
-    escena6.style.display = "block";
-});
 
 document.getElementById("resultadoBtn").addEventListener("click", () => {
     escena6.style.display = "none";

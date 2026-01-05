@@ -1,7 +1,7 @@
 import { TIPOS_PRODUCTOS } from "./constants.js";
 
-export class Producto{
-    constructor(nombre, imagen, precio, rareza, tipo, bonus){
+export class Producto {
+    constructor(nombre, imagen, precio, rareza, TIPOS_PRODUCTOS, bonus) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.precio = precio;
@@ -11,38 +11,38 @@ export class Producto{
         this.bonus = bonus;
     }
 
-    getNombre(){
+    getNombre() {
         return this.nombre;
     }
 
-    setNombre(nombre){
+    setNombre(nombre) {
         this.nombre = nombre;
     }
 
-    getImagen(){
+    getImagen() {
         return this.imagen;
     }
 
-    setImagen(imagen){
+    setImagen(imagen) {
         this.imagen = imagen;
     }
 
-    getPrecio(){
+    getPrecio() {
         return this.precio;
     }
 
-    setPrecio(precio){
+    setPrecio(precio) {
         this.precio = precio;
     }
 
-    precioFormateado(){
-        return (this.precioDescuento/100).toFixed(2) + "€";
+    precioFormateado() {
+        return (this.precioDescuento / 100).toFixed(2) + "€";
     }
 
-    descuentoProducto(porcentaje){
-        let descuento = 1 - (porcentaje/100)
+    descuentoProducto(porcentaje) {
+        let descuento = 1 - (porcentaje / 100)
         let nuevoPrecio = this.precio * descuento;
-        return new Producto(this.nombre, this.imagen, this.nuevoPrecio,this.rareza, this.tipo, this.bonus)
+        return new Producto(this.nombre, this.imagen, this.nuevoPrecio, this.rareza, this.tipo, this.bonus)
     }
-    
+
 }

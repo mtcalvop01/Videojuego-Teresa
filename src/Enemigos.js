@@ -1,43 +1,42 @@
-export class Enemigo{
-    constructor(nombre, avatar, tipo = "Enemigo", nivelAtaque, VIDA_BASE){
+export class Enemigo {
+    constructor(nombre, avatar, tipo = "Enemigo", nivelAtaque, vidaEnemigo) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.tipo = tipo;
-        this.ataque = nivelAtaque;
+        this.nivelAtaque = nivelAtaque;
         this.puntos = 100;
-        this.vida = vida;
-        this.vidaMaxima = VIDA_BASE;
+        this.vida = vidaEnemigo;
     }
 
-    getNombre(){
+    getNombre() {
         return this.nombre;
     }
 
-    setNombre(nombre){
+    setNombre(nombre) {
         this.nombre = nombre;
     }
 
-    getAvatar(){
+    getAvatar() {
         return this.avatar;
     }
 
-    setAvatar(avatar){
+    setAvatar(avatar) {
         this.avatar = avatar;
     }
 
-    getNivelAtaque(){
+    getNivelAtaque() {
         return this.nivelAtaque;
     }
 
-    setNivelAtaque(nivelAtaque){
+    setNivelAtaque(nivelAtaque) {
         this.nivelAtaque = nivelAtaque;
     }
 
-    getPuntos(){
+    getPuntos() {
         return this.puntos;
     }
 
-    setPuntos(puntos){
+    setPuntos(puntos) {
         this.puntos = puntos;
     }
 }
