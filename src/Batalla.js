@@ -1,4 +1,5 @@
 import { PUNTOS_BASE_VICTORIA } from "./constants.js";
+
 export class Batalla {
 
     batalla(enemigo, jugador) {
@@ -22,22 +23,26 @@ export class Batalla {
         }
         let ganador;
         let puntos = 0;
+        let esJefe = typeof enemigo.multiplicadordanio === "number";
+        let monedas = 0;
 
         if (auxVidaJugador > 0) {
             ganador = jugador.nombre;
             puntos = this.calcularPuntos(enemigo);
+            monedas = enemigo.esJefe ? 10:5;
         } else {
             ganador = enemigo.nombre;
         }
-        return { ganador, puntos, vidaJugadorFinal: auxVidaJugador, vidaEnemigoFinal: auxVidaEnemigo };
+        return { ganador, puntos, monedas, vidaJugadorFinal: auxVidaJugador, vidaEnemigoFinal: auxVidaEnemigo };
     }
 
 
     calcularPuntos(enemigo) {
         let puntos = PUNTOS_BASE_VICTORIA + enemigo.nivelAtaque;
-        const esJefe = typeof enemigo.multiplicadordanio === "number";
+        let esJefe = typeof enemigo.multiplicadordanio === "number";
         if (esJefe) {
             puntos *= enemigo.multiplicadordanio;
+
         }
         return Math.round(puntos);
     }

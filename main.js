@@ -305,17 +305,39 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
     contenedorImg.className = "contenedorImgBatallas";
 
     {
-        if (jugador.vida <= 0) {
+        if (jugador.vida <= 0 || indiceBatallaActual >= EnemigosData.length) {
             escena5.style.display = "none";
             escena6.style.display = "block";
-            return;
+
+            const contenedorResultado = document.getElementById("texto");
+    const jugadorMurio = jugador.vida <= 0;
+    const nivelJugadorFinal = jugadorMurio ? "Novato" : (jugador.puntos >= 50 ? "Veterano" : "Novato");
+    
+    contenedorResultado.innerHTML = `<p>${jugador.nombre} ha logrado se un <strong>${nivelJugadorFinal}<strong><p>
+    <p>Puntos Totales: ${jugador.puntos}</p>`
+
+    if (nivelJugadorFinal === "Veterano") {
+        const duration = 15 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
         }
 
-        batalla.innerHTML = "";
+        const interval = setInterval(() => {
+            const timeLeft = animationEnd - Date.now();
 
-        if (indiceBatallaActual >= EnemigosData.length) {
-            escena5.style.display = "none";
-            escena6.style.display = "block";
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                return;
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        }, 250);
+    }
             return;
         }
 
@@ -346,8 +368,10 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
         batalla.appendChild(contenedorImg);
 
         if (resultado.vidaJugadorFinal > 0) {
-            resultadoTexto.textContent = `Ganador: ${jugador.nombre}`;
-            jugador.sumarPuntos(resultado.puntos);
+            jugador.dinero = jugador.dinero + resultado.monedas;
+            resultadoTexto.textContent = `Ganador: ${jugador.nombre} Dinero: ${jugador.dinero}`;
+
+            jugador.sumarPuntos(resultado.puntos + resultado.monedas);
             for (let i = 0; i < 3; i++) {
                 const imgAnimacionMonedas = document.createElement("img");
                 imgAnimacionMonedas.className = "imgAnimacionMonedas";
@@ -366,17 +390,42 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
     }
 
     continuarBtn.onclick = () => {
-        if (jugador.vida <= 0) {
+        if (jugador.vida <= 0 || indiceBatallaActual >= EnemigosData.length) {
             escena5.style.display = "none";
             escena6.style.display = "block";
-            return;
+
+            const contenedorResultado = document.getElementById("contenedorResultado");
+    const jugadorMurio = jugador.vida <= 0;
+    const nivelJugadorFinal = jugadorMurio ? "Novato" : (jugador.puntos >= 50 ? "Veterano" : "Novato");
+    
+    contenedorResultado.innerHTML = `<p>${jugador.nombre} ha logrado se un <strong>${nivelJugadorFinal}<strong><p>
+    <p>Puntos Totales: ${jugador.puntos}</p>`
+
+    if (nivelJugadorFinal === "Veterano") {
+        const duration = 15 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
         }
 
+        const interval = setInterval(() => {
+            const timeLeft = animationEnd - Date.now();
 
-        if (indiceBatallaActual >= EnemigosData.length) {
-            escena5.style.display = "none";
-            escena6.style.display = "block";
-            return
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                return;
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        }, 250);
+    }
+
+            continuarBtn.onclick = null;
+            return;
         }
 
         const enemigoActual = EnemigosData[indiceBatallaActual];
@@ -411,8 +460,10 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
         const resultadoTexto = document.createElement("p");
         resultadoTexto.className = "resultadoBatalla";
         if (resultado.vidaJugadorFinal > 0) {
-            resultadoTexto.textContent = `Ganador: ${jugador.nombre}`;
-            jugador.sumarPuntos(resultado.puntos);
+            jugador.dinero = jugador.dinero + resultado.monedas;
+            resultadoTexto.textContent = `Ganador: ${jugador.nombre} Dinero: ${jugador.dinero}`;
+
+            jugador.sumarPuntos(resultado.puntos + resultado.monedas);
             for (let i = 0; i < 3; i++) {
                 const imgAnimacionMonedas = document.createElement("img");
                 imgAnimacionMonedas.className = "imgAnimacionMonedas";
@@ -431,6 +482,40 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
     }
 });
 
+document.getElementById("pasarBatallaBtn").addEventListener("click", () => {
+    escena5.style.display = "none";
+    escena6.style.display = "block";
+
+    const contenedorResultado = document.getElementById("contenedorResultado");
+    const jugadorMurio = jugador.vida <= 0;
+    const nivelJugadorFinal = jugadorMurio ? "Novato" : (jugador.puntos >= 50 ? "Veterano" : "Novato");
+    
+    contenedorResultado.innerHTML = `<p>${jugador.nombre} ha logrado se un <strong>${nivelJugadorFinal}<strong><p>
+    <p>Puntos Totales: ${jugador.puntos}</p>`
+
+    if (nivelJugadorFinal === "Veterano") {
+        const duration = 15 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(() => {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                return;
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+        }, 250);
+    }
+});
 
 document.getElementById("resultadoBtn").addEventListener("click", () => {
     escena6.style.display = "none";

@@ -178,7 +178,23 @@
     }
 }
 
-#crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover {
+#contenedorResultado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 40px
+}
+
+#texto{
+    text-align: center;
+}
+
+#crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover{
     background-color: #855d3a; 
     box-shadow: 0 0 10px #eb7231;
     transform: translateY(-2px);
@@ -379,8 +395,8 @@ footer{
 .imgAnimacionMonedas {
     position: absolute;
     top: -100px;              
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     animation: caerMoneda 3s ease-in forwards;
     z-index: 1;
 }
