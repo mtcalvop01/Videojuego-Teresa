@@ -4,6 +4,7 @@ export class Jefe extends Enemigo {
     constructor(nombre, avatar, nivelAtaque, puntos, multiplicadorDanio = MULTIPLICADOR_DANIO) {
         super(nombre, avatar, "Jefe", nivelAtaque, puntos);
         this.multiplicadorDanio = multiplicadorDanio;
+        this.esJefe = true;
     }
 
     getMultiplicadorDanio() {

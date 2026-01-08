@@ -6,6 +6,12 @@ export class Enemigo {
         this.nivelAtaque = nivelAtaque;
         this.puntos = 100;
         this.vida = vidaEnemigo;
+        this.vidaInicial = vidaEnemigo;
+        this.esJefe = false;
+    }
+
+    reset(){
+        this.vida = this.vidaInicial;
     }
 
     getNombre() {

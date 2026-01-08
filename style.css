@@ -77,7 +77,7 @@
     text-align: center;
 }
 
-#crearJugador, #estadoJugadorbtn, #botonEnemigos, #botonResumen, #botonMercado, #batallasBtn, #resultadoBtn {
+#crearJugador, #estadoJugadorbtn, #botonEnemigos, #botonResumen, #botonMercado, #batallasBtn, #resultadoBtn, #vistaPrincipal {
     display: block;
     background-color: #97623f;
     color: #fff;
@@ -194,13 +194,25 @@
     text-align: center;
 }
 
-#crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover{
+#tabla{
+    margin: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+#tablaTr{
+    background-color: white;
+}
+
+#crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover, #vistaPrincipal:hover{
     background-color: #855d3a; 
     box-shadow: 0 0 10px #eb7231;
     transform: translateY(-2px);
 }
 
-#crearJugador:active, #estadoJugadorbtn:active, #botonEnemigos:active, #botonResumen:active, #botonMercado:active, .btnAvanzarMercado:active, #batallasBtn:active, #resultadoBtn:active {
+#crearJugador:active, #estadoJugadorbtn:active, #botonEnemigos:active, #botonResumen:active, #botonMercado:active, .btnAvanzarMercado:active, #batallasBtn:active, #resultadoBtn:active, #vistaPrincipal:active{
     transform: translateY(1px);
     box-shadow: 1px 1px 4px #00000066;
 }
