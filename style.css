@@ -427,3 +427,152 @@ footer{
         opacity: 0;
     }
 }
+
+@media (max-width: 1024px) {
+
+    #tarjetas,
+    #tarjeta-Mercado {
+        grid-template-columns: repeat(2, 1fr);
+        width: 90%;
+    }
+
+    .tarj {
+        height: auto;
+        padding: 10px;
+    }
+
+    .imgBatallaJugador,
+    .imgBatallaEnemigo {
+        height: 160px;
+    }
+
+    .contenedorImgBatallas {
+        gap: 30px;
+    }
+
+    .tarjetaJugador {
+        width: 220px;
+        height: auto;
+    }
+
+    .imagenJugador {
+        width: 60px;
+    }
+}
+
+@media (max-width: 720px) {
+
+    #tarjetas,
+    #tarjeta-Mercado {
+        grid-template-columns: 1fr;
+        width: 95%;
+        max-height: none;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+
+    .nombreJugador {
+        text-align: center;
+        padding-right: 0;
+    }
+
+    .imgBatallaJugador,
+    .imgBatallaEnemigo {
+        height: 120px;
+    }
+
+    .contenedorImgBatallas {
+        gap: 15px;
+    }
+
+    #batallas {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    #contenedor{
+        width: 95vw;
+        margin:0;
+    }
+
+    #tarjetas,
+    #tarjeta-Mercado {
+        grid-template-columns: 1fr;
+        width: 80%;
+        max-height: none;
+        margin-left: 9px;
+    }
+
+    .titulos {
+        font-size: 1.2rem;
+    }
+
+    #formularioJugador {
+        max-width: 90%;
+    }
+
+    #crearJugador,
+    #estadoJugadorbtn,
+    #botonEnemigos,
+    #botonResumen,
+    #botonMercado,
+    #batallasBtn,
+    #resultadoBtn,
+    #vistaPrincipal {
+        font-size: 1rem;
+        padding: 6px 15px;
+    }
+
+    .imgBatallaJugador,
+    .imgBatallaEnemigo {
+        height: 90px;
+    }
+
+    .vsTexto {
+        font-size: 1rem;
+    }
+
+    .tarjetaJugador {
+        width: 90%;
+    }
+
+    #cestaMercado div {
+        width: 20px;
+        height: 20px;
+        overflow-y: auto;
+    }
+
+    #cestaMercado div img {
+        width: 15px;
+    }
+
+    #dinero img {
+        width: 50px;
+    }
+
+    .imgAnimacionMonedas{
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 30px;
+    }
+
+    #monedas {
+        font-size: 12px;
+        top: 27px;
+        left: 15px;
+    }
+}
+
+
