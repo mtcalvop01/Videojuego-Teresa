@@ -33,7 +33,7 @@ const mensaje = document.getElementById("mensajeError");
  * Deshabilita el botón de crear jugador si los puntos usados son 0 o más de 10.
  * Muestra mensajes de error si se excede el límite de puntos.
  */
-function actualizarPuntos(){
+function actualizarPuntos() {
     let ataque = Number(ataqueInput.value);
     let defensa = Number(defensaInput.value);
     let vida = Number(vidaInput.value);
@@ -42,20 +42,20 @@ function actualizarPuntos(){
     let puntosUsados = ataque + defensa + vidaExtra;
     let puntosRestantes = 10 - puntosUsados;
 
-    if(puntosRestantes < 0){
+    if (puntosRestantes < 0) {
         puntosRestantes = 0;
     }
-        puntosDisponibles.textContent = puntosRestantes;
+    puntosDisponibles.textContent = puntosRestantes;
 
-    if(puntosUsados === 0 || puntosUsados > 10){
+    if (puntosUsados === 0 || puntosUsados > 10) {
         crearJugadorBtn.disabled = true;
-        if(puntosUsados > 10){
+        if (puntosUsados > 10) {
             mensaje.textContent = "Solo puede repartir 10 puntos."
         }
-        else{
+        else {
             mensaje.textContent = "";
         }
-    }else{
+    } else {
         crearJugadorBtn.disabled = false;
         mensaje.textContent = "";
 
@@ -149,6 +149,14 @@ const contenedorMercado = document.getElementById("tarjeta-Mercado");
 const productosSeleccionados = new Set();
 
 for (const mercado of mercadoArray) {
+
+    let precioDescuento = mercado.precio;
+
+    if(mercado.rareza === "raro" || mercado.rareza === "legendario"){
+        const mercadoDescuento = mercado.descuentoProducto(20);
+        precioDescuento = mercadoDescuento.precio;
+    }
+
     let tarjMercadoIndividual = document.createElement("div");
     tarjMercadoIndividual.className = "tarj";
 
@@ -159,7 +167,7 @@ for (const mercado of mercadoArray) {
     nombreProducto.textContent = mercado.nombre;
 
     let precioProducto = document.createElement("h3");
-    precioProducto.textContent = "💰Precio: " + mercado.precio;
+    precioProducto.textContent = "💰Precio: " + precioDescuento;
 
     let rarezaProducto = document.createElement("h3");
     rarezaProducto.textContent = "🔮Rareza: " + mercado.rareza;
@@ -262,27 +270,27 @@ function finalizarBatallas() {
 
     let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
     if (ranking.length === 0) {
-    ranking = [
-        {nombre: "Ana", puntos: 500, dinero: 50},
-        {nombre: "Laura", puntos: 250, dinero: 90},
-        {nombre: "Micaela", puntos: 230, dinero: 0},
-        {nombre: "Isabella", puntos: 200, dinero: 100},
-        {nombre: "Martina", puntos: 410, dinero: 120},
-        {nombre: "Valentina", puntos: 720, dinero: 300},
-        {nombre: "Petra", puntos: 615, dinero: 450},
-        {nombre: "Camila", puntos: 505, dinero: 200},
-        {nombre: "Juana", puntos: 843, dinero: 510},
-        {nombre: "Mariana", puntos: 330, dinero: 75}
-    ];
-    localStorage.setItem("ranking", JSON.stringify(ranking));
-}
+        ranking = [
+            { nombre: "Ana", puntos: 500, dinero: 50 },
+            { nombre: "Laura", puntos: 250, dinero: 90 },
+            { nombre: "Micaela", puntos: 230, dinero: 0 },
+            { nombre: "Isabella", puntos: 200, dinero: 100 },
+            { nombre: "Martina", puntos: 410, dinero: 120 },
+            { nombre: "Valentina", puntos: 720, dinero: 300 },
+            { nombre: "Petra", puntos: 615, dinero: 450 },
+            { nombre: "Camila", puntos: 505, dinero: 200 },
+            { nombre: "Juana", puntos: 843, dinero: 510 },
+            { nombre: "Mariana", puntos: 330, dinero: 75 }
+        ];
+        localStorage.setItem("ranking", JSON.stringify(ranking));
+    }
 
-jugador = {
-    nombre: jugador.nombre,
-    puntos: jugador.puntos,
-    dinero: jugador.dinero
-}
-ranking.push(jugador);
+    jugador = {
+        nombre: jugador.nombre,
+        puntos: jugador.puntos,
+        dinero: jugador.dinero
+    }
+    ranking.push(jugador);
     ranking.sort((a, b) => b.puntos - a.puntos);
     localStorage.setItem("ranking", JSON.stringify(ranking));
 
@@ -292,7 +300,7 @@ ranking.push(jugador);
         const fila = document.createElement("tr");
         fila.innerHTML = `<td>${j.nombre}</td><td>${j.puntos}</td><td>${j.dinero}</td>`;
 
-        
+
         tablaBody.appendChild(fila);
     });
 
@@ -318,6 +326,11 @@ ranking.push(jugador);
         }, 250);
     }
 }
+
+document.getElementById("rankingConsola").addEventListener("click", () => {
+const ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+    console.table(ranking);
+});
 
 document.getElementById("botonEnemigos").addEventListener("click", () => {
     escena4.style.display = "none";

@@ -39,7 +39,7 @@ export class Producto {
     descuentoProducto(porcentaje) {
         let descuento = 1 - (porcentaje / 100)
         let nuevoPrecio = this.precio * descuento;
-        return new Producto(this.nombre, this.imagen, this.nuevoPrecio, this.rareza, this.tipo, this.bonus)
+        return new Producto(this.nombre, this.imagen, nuevoPrecio, this.rareza, this.tipo, this.bonus)
     }
 
 }

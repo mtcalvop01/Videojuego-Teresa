@@ -96,7 +96,7 @@
     text-align: center;
 }
 
-#crearJugador, #estadoJugadorbtn, #botonEnemigos, #botonResumen, #botonMercado, #batallasBtn, #resultadoBtn, #vistaPrincipal {
+#crearJugador, #estadoJugadorbtn, #botonEnemigos, #botonResumen, #botonMercado, #batallasBtn, #resultadoBtn, #vistaPrincipal, #rankingConsola {
     display: block;
     background-color: #97623f;
     color: #fff;
@@ -149,7 +149,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 25px;
     position: relative;
     margin: 20px 0;
     position: relative;
@@ -162,7 +162,7 @@
     align-items: center;
     gap: 50px;
     position: relative;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .imgBatallaJugador{
@@ -220,7 +220,7 @@
     flex-direction: column;
     border: 2px solid black;
     overflow-y: auto;
-    max-height: 30vh;
+    max-height: 24vh;
     background-color: white;
 }
 
@@ -240,13 +240,13 @@
     color:white;
 }
 
-#crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover, #vistaPrincipal:hover{
+#crearJugador:hover, #estadoJugadorbtn:hover, #botonEnemigos:hover, #botonResumen:hover, #botonMercado:hover, .btnAvanzarMercado:hover, #batallasBtn:hover, #resultadoBtn:hover, #vistaPrincipal:hover, #rankingConsola:hover{
     background-color: #855d3a; 
     box-shadow: 0 0 10px #eb7231;
     transform: translateY(-2px);
 }
 
-#crearJugador:active, #estadoJugadorbtn:active, #botonEnemigos:active, #botonResumen:active, #botonMercado:active, .btnAvanzarMercado:active, #batallasBtn:active, #resultadoBtn:active, #vistaPrincipal:active{
+#crearJugador:active, #estadoJugadorbtn:active, #botonEnemigos:active, #botonResumen:active, #botonMercado:active, .btnAvanzarMercado:active, #batallasBtn:active, #resultadoBtn:active, #vistaPrincipal:active, #rankingConsola:active{
     transform: translateY(1px);
     box-shadow: 1px 1px 4px #00000066;
 }
@@ -269,14 +269,14 @@
 #tarjetas{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    width: 70%;
+    gap: 10px;
+    max-width: 100%;
+    height: 40vh;
+    width: 50vw;
     margin: 0 auto;
-    max-height: 350px;
     overflow-y: auto;
-    padding: 10px;
+    padding: 5px;
     background-color: #97623f;
-
 }
 
 #tarjeta-Mercado {
@@ -311,8 +311,7 @@
 .tarj{
     border: 2px solid black;
     background-color: white;
-    height: 150px;
-    width: 300px;
+    max-width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
