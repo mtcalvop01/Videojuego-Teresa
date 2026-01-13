@@ -3,7 +3,7 @@ import { Jefe } from "./Jefe.js";
 
 /**
  * Array que contiene todos los enemigos y jefes disponibles en el juego.
- * @type {(Enemigo | Jefe)[]}
+ * @type {Array.<Enemigo|Jefe>}
  */
 export const EnemigosData = [
     new Enemigo("Goblin", "./Imagenes/goblin.svg", "Enemigo", 30, 35),
