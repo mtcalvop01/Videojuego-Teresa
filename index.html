@@ -2,43 +2,56 @@
 <html lang='es'>
 
 <head>
-    <meta charset='utf-8'>  
+    <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel='stylesheet' href='style.css'>
     <script type="module" src='main.js' defer></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+
     <title>Videojuego Teresa</title>
 </head>
+
 <body>
-    <div id="contenedor">
-        <div id="escena1"><br>
-            <h1 class="titulos">Creación del Jugador</h1><br>
+    <header class="header">
+        <h2 class="nombreJuego">AVENTURA EN EL REINO</h2>
+    </header>
+    <main id="contenedor">
+        <div id="escena1">
+            <h1 class="titulos">Creación del Jugador</h1>
             <form id="formularioJugador">
                 <label>🧝‍♀️Nombre:</label>
                 <input type="text" id="nombre" pattern="^[A-Z][A-Za-z ]{0,19}" required title="Tiene que tener entre 1-20 caracteres y solo se permiten mayúsculas, minúsculas y espacios en blanco">
+    
                 <div id="mensaje"></div>
 
-                <label>⚔️Ataque:</label>
-                <input type="number" id="ataque" value="0" min="0" max="10"><br><br>
-
-                <label>🛡️Defensa:</label>
-                <input type="number" id="defensa" value="0" min="0" max="10" pattern="^[0-9]+$"><br><br>
-
-                <label>❤️Vida:</label>
-                <input type="number" id="vida" value="100" min="100" max="110" step="1"><br><br>
-
-                <label id="puntos">⭐Puntos disponibles:<span id="puntosDisponibles">10</span></label>
+                <div id="filas-seguidas">
+                    <div>
+                        <label>⚔️Ataque</label>
+                        <input type="number" id="ataque" value="0" min="0" max="10">
+                    </div>
+    
+                    <div>
+                        <label>🛡️Defensa</label>
+                        <input type="number" id="defensa" value="0" min="0" max="10">
+                    </div>
+    
+                    <div>
+                        <label>❤️Vida</label>
+                        <input type="number" id="vida" value="100" min="100" max="110">
+                    </div>
+                </div>
+    
+                <label id="puntos">⭐Puntos disponibles:
+                    <span id="puntosDisponibles">10</span>
+                </label>
+    
                 <div id="mensajeError"></div>
             </form>
-            <br>
-                <input type="submit" id="crearJugador" value="Crear Jugador"><br>
+    
+            <input type="submit" id="crearJugador" value="Crear Jugador"><br>
         </div>
 
         <div id="escenaEstadoJugador">
-            <header class="header">
-                <h2 class="nombreJugador"></h2>
-            </header>
             <div class="tarjetaJugador">
                 <img src="./imagenes/imgGuerrera.svg">
                 <h3 class="ataqueJugador"></h3>
@@ -49,21 +62,14 @@
         </div>
 
         <div id="escena2">
-            <header class="header">
-                <img class="imagenJugador" src="./imagenes/imgJugador.png" alt="Jugador">
-                <h2 class="nombreJugador"></h2>
-            </header><br>
-            <h1 class="titulos">Mercado</h1><br>
+            <h1 class="titulos">Mercado</h1>
             <div id="tarjeta-Mercado">
-                
+
             </div><br>
             <input type="button" id="botonMercado" value="Continuar">
         </div>
 
         <div id="escena3">
-            <header class="header">
-                <h2 class="nombreJugador"></h2>
-            </header>
             <div class="tarjetaJugador">
                 <img src="./imagenes/imgGuerrera.svg" alt="jugador">
                 <h3 class="vidaJugador">❤️Vida:</h3>
@@ -74,22 +80,14 @@
         </div>
 
         <div id="escena4">
-            <header class="header">
-                <img class="imagenJugador" src="./imagenes/imgJugador.png" alt="Jugador">
-                <h2 class="nombreJugador"></h2>
-            </header><br>
             <h1 class="titulos">Enemigos Disponibles</h1><br>
             <div id="tarjetas">
-                
+
             </div><br>
             <input type="button" id="botonEnemigos" value="Comenzar Batallas">
         </div>
 
         <div id="escena5">
-            <header class="header">
-                <img class="imagenJugador" src="./imagenes/imgJugador.png" alt="Jugador">
-                <h2 class="nombreJugador"></h2>
-            </header>
             <br>
             <h1 class="titulos">Batallas</h1>
             <div id="batallas">
@@ -99,28 +97,21 @@
         </div>
 
         <div id="escena6">
-            <header class="header">
-                <img class="imagenJugador" src="./imagenes/imgJugador.png" alt="Jugador">
-                <h2 class="nombreJugador"></h2>
-            </header>
             <br>
             <h1 class="titulos">Resultado Final</h1>
             <div id="contenedorResultado">
                 <div id="texto">
-                    
+
                 </div>
 
             </div>
-            
+
 
             <input type="button" id="resultadoBtn" value="Resumen de la Partida">
         </div>
 
         <div id="escena7">
-            <header class="header">
-                <img class="imagenJugador" src="./imagenes/imgJugador.png" alt="Jugador">
-                <h2 class="nombreJugador"></h2>
-            </header><br><br>
+            <br><br>
             <h1 class="titulos">Resumen de la Partida</h1>
             <div id="tabla">
                 <table border="1">
@@ -132,43 +123,43 @@
                         </tr>
                     </thead>
                     <tbody>
+        
                     </tbody>
                 </table>
-            
             </div>
-
+        
             <input type="button" id="vistaPrincipal" value="Volver a jugar">
-            
+        </div>
+
+    </main>
+
+    <footer>
+        <div id="dinero">
+            <img src="./imagenes/monedero.png" alt="dinero">
+            <span id="monedas"></span>
+        </div>
+
+        <div id="cestaMercado">
+            <div id="producto1">
+
             </div>
+            <div id="producto2">
 
-        <footer>
-                <div id="dinero">
-                    <img src="./imagenes/monedero.png" alt="dinero">
-                    <span id="monedas"></span>
-                </div>
-                
-                <div id="cestaMercado">
-                    <div id="producto1">
+            </div>
+            <div id="producto3">
 
-                    </div>
-                    <div id="producto2">
-                        
-                    </div>
-                    <div id="producto3">
-                        
-                    </div>
-                    <div id="producto4">
-                        
-                    </div>
-                    <div id="producto5">
-                        
-                    </div>
-                    <div id="producto6">
-                        
-                    </div>
-                </div>
-        </footer>
-    </div>
+            </div>
+            <div id="producto4">
+
+            </div>
+            <div id="producto5">
+
+            </div>
+            <div id="producto6">
+
+            </div>
+        </div>
+    </footer>
 </body>
-</html>
 
+</html>

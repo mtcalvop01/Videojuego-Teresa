@@ -1,14 +1,33 @@
 import { TIPOS_PRODUCTOS } from "./constants.js";
 import { Producto } from "./Producto.js";
+
+/**
+ * Representa un mercado que contiene productos.
+ */
 export class Mercado {
+    /**
+     * Crea una instancia de Mercado.
+     * @param {Producto[]} productos - Array de objetos Producto disponibles en el mercado. 
+     */
     constructor(productos) {
         this.productos = productos;
     }
 
+    /**
+     * Filtra los productos del mercado por rareza.
+     * @param {string} rareza - Rareza por la que se desea filtrar ("común", "raro", "legendario").
+     * @returns {Producto[]} - Array de productos que coinciden con la rareza indicada.
+     */
     filtrarPorRareza(rareza) {
         return this.productos.filter(producto => producto.rareza == rareza);
     }
 
+    /**
+     * Aplica un descuento a los productos según un filtro.
+     * @param {string} filtro - Nombre de la propiedad del producto a filtrar.
+     * @param {*} valor - Valor de la propiedad que debe coincidir para aplicar el descuento.
+     * @param {number} porcentaje - Porcentaje de descuento a aplicar.
+     */
     aplicarDescuento(filtro, valor, porcentaje) {
         this.productos = this.productos.map(producto => {
             if (producto[filtro] == valor) {
@@ -18,11 +37,20 @@ export class Mercado {
         });
     }
 
+    /**
+     * Busca un producto por su nombre.
+     * @param {string} nombre - Nombre exacto del productos que se desea buscar.
+     * @returns  {Producto | undefined} El primer producto que coincida con el nombre, o undefined si no se enceuntra.
+     */
     buscarProductoNombre(nombre) {
         return this.productos.find(producto => producto.nombre == nombre);
     }
 }
 
+/**
+ * Array con todos los productos disponibles en el mercado.
+ * @type {Producto[]}
+ */
 export const mercadoArray = [
     new Producto("Espada de Hierro", "./Imagenes/espada_hierro.svg", 80, "común", TIPOS_PRODUCTOS.ARMA, { ataque: 5 }),
     new Producto("Armadura de Cuero", "./Imagenes/armadura.svg", 70, "común", TIPOS_PRODUCTOS.ARMADURA, { defensa: 3 }),

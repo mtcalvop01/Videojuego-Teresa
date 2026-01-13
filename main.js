@@ -28,7 +28,12 @@ const vidaInput = document.getElementById("vida");
 const puntosDisponibles = document.getElementById("puntosDisponibles");
 const mensaje = document.getElementById("mensajeError");
 
-ataqueInput.addEventListener("input", () => {
+/**
+ * Actualiza los puntos disponibles en el formulario según los valores de ataque, defensa y vida.
+ * Deshabilita el botón de crear jugador si los puntos usados son 0 o más de 10.
+ * Muestra mensajes de error si se excede el límite de puntos.
+ */
+function actualizarPuntos(){
     let ataque = Number(ataqueInput.value);
     let defensa = Number(defensaInput.value);
     let vida = Number(vidaInput.value);
@@ -37,80 +42,29 @@ ataqueInput.addEventListener("input", () => {
     let puntosUsados = ataque + defensa + vidaExtra;
     let puntosRestantes = 10 - puntosUsados;
 
-    if (puntosRestantes < 0) {
+    if(puntosRestantes < 0){
         puntosRestantes = 0;
     }
+        puntosDisponibles.textContent = puntosRestantes;
 
-    puntosDisponibles.textContent = puntosRestantes;
-
-    if (puntosUsados === 0 || puntosUsados > 10) {
+    if(puntosUsados === 0 || puntosUsados > 10){
         crearJugadorBtn.disabled = true;
-        if (puntosUsados > 10) {
+        if(puntosUsados > 10){
             mensaje.textContent = "Solo puede repartir 10 puntos."
-        } else {
+        }
+        else{
             mensaje.textContent = "";
         }
-    } else {
+    }else{
         crearJugadorBtn.disabled = false;
         mensaje.textContent = "";
+
     }
-});
-
-vidaInput.addEventListener("input", () => {
-    let ataque = Number(ataqueInput.value);
-    let defensa = Number(defensaInput.value);
-    let vida = Number(vidaInput.value);
-
-    let vidaExtra = vida - 100;
-    let puntosUsados = ataque + defensa + vidaExtra;
-    let puntosRestantes = 10 - puntosUsados;
-
-    if (puntosRestantes < 0) {
-        puntosRestantes = 0;
-    }
-
-    puntosDisponibles.textContent = puntosRestantes;
-
-    if (puntosUsados === 0 || puntosUsados > 10) {
-        crearJugadorBtn.disabled = true;
-        if (puntosUsados > 10) {
-            mensaje.textContent = "Solo puede repartir 10 puntos."
-        } else {
-            mensaje.textContent = "";
-        }
-    } else {
-        crearJugadorBtn.disabled = false;
-        mensaje.textContent = "";
-    }
-});
-
-defensaInput.addEventListener("input", () => {
-    let ataque = Number(ataqueInput.value);
-    let defensa = Number(defensaInput.value);
-    let vida = Number(vidaInput.value);
-
-    let vidaExtra = vida - 100;
-    let puntosUsados = ataque + defensa + vidaExtra;
-    let puntosRestantes = 10 - puntosUsados;
-
-    if (puntosRestantes < 0) {
-        puntosRestantes = 0;
-    }
-    puntosDisponibles.textContent = puntosRestantes;
-
-
-    if (puntosUsados === 0 || puntosUsados > 10) {
-        crearJugadorBtn.disabled = true;
-        if (puntosUsados > 10) {
-            mensaje.textContent = "Solo puede repartir 10 puntos."
-        } else {
-            mensaje.textContent = "";
-        }
-    } else {
-        crearJugadorBtn.disabled = false;
-        mensaje.textContent = "";
-    }
-});
+}
+ataqueInput.addEventListener("input", actualizarPuntos);
+defensaInput.addEventListener("input", actualizarPuntos);
+vidaInput.addEventListener("input", actualizarPuntos);
+actualizarPuntos();
 
 document.getElementById("crearJugador").addEventListener("click", (event) => {
     event.preventDefault();
@@ -148,8 +102,6 @@ document.getElementById("crearJugador").addEventListener("click", (event) => {
 
     jugador = new Jugador(nombre, ataque, defensa, vida);
 
-
-    /*Una vez se ha creado el jugador, para mostrar los datos del formulario hacemos lo siguiente:*/
     let nombreJugador = document.querySelectorAll(".nombreJugador");
     nombreJugador.forEach(nombre => nombre.textContent = jugador.nombre)
 
@@ -196,7 +148,6 @@ const contenedorMercado = document.getElementById("tarjeta-Mercado");
 
 const productosSeleccionados = new Set();
 
-
 for (const mercado of mercadoArray) {
     let tarjMercadoIndividual = document.createElement("div");
     tarjMercadoIndividual.className = "tarj";
@@ -225,11 +176,6 @@ for (const mercado of mercadoArray) {
             botonAvanzarMercado.style.animation = "";
         }, 500);
 
-        botonAvanzarMercado.textContent = "🛒";
-        setTimeout(() => {
-            botonAvanzarMercado.textContent = "Quitar";
-        }, 1000);
-
         const cestaMercado = document.getElementById("cestaMercado");
         const divs = cestaMercado.children;
         if (productosSeleccionados.has(mercado)) {
@@ -244,6 +190,7 @@ for (const mercado of mercadoArray) {
                     break;
                 }
             }
+            botonAvanzarMercado.textContent = "Añadir";
         } else {
             if (jugador.dinero >= mercado.precio) {
                 productosSeleccionados.add(mercado);
@@ -260,8 +207,16 @@ for (const mercado of mercadoArray) {
                         break;
                     }
                 }
+
+                botonAvanzarMercado.textContent = "🛒";
+                setTimeout(() => {
+                    botonAvanzarMercado.textContent = "Quitar";
+                }, 1000);
+
             } else {
                 botonAvanzarMercado.style.display = "block";
+                botonAvanzarMercado.style.animation = "none";
+                botonAvanzarMercado.style.cursor = "default";
             }
         }
     });
@@ -293,21 +248,41 @@ document.getElementById("botonResumen").addEventListener("click", () => {
     escena4.style.display = "block";
 });
 
-
 let indiceBatallaActual = 0;
 
+/**
+ * Finaliza todas las batallas:
+ * -Muestra ranking.
+ * -Muestra resutlados.
+ * -Activa una animación si es veterano.
+ */
 function finalizarBatallas() {
-    // Ocultar la escena de batalla y mostrar la final
     escena5.style.display = "none";
     escena6.style.display = "block";
 
     let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
-    ranking.push({
-        nombre: jugador.nombre,
-        puntos: jugador.puntos,
-        dinero: jugador.dinero,
-    });
+    if (ranking.length === 0) {
+    ranking = [
+        {nombre: "Ana", puntos: 500, dinero: 50},
+        {nombre: "Laura", puntos: 250, dinero: 90},
+        {nombre: "Micaela", puntos: 230, dinero: 0},
+        {nombre: "Isabella", puntos: 200, dinero: 100},
+        {nombre: "Martina", puntos: 410, dinero: 120},
+        {nombre: "Valentina", puntos: 720, dinero: 300},
+        {nombre: "Petra", puntos: 615, dinero: 450},
+        {nombre: "Camila", puntos: 505, dinero: 200},
+        {nombre: "Juana", puntos: 843, dinero: 510},
+        {nombre: "Mariana", puntos: 330, dinero: 75}
+    ];
+    localStorage.setItem("ranking", JSON.stringify(ranking));
+}
 
+jugador = {
+    nombre: jugador.nombre,
+    puntos: jugador.puntos,
+    dinero: jugador.dinero
+}
+ranking.push(jugador);
     ranking.sort((a, b) => b.puntos - a.puntos);
     localStorage.setItem("ranking", JSON.stringify(ranking));
 
@@ -316,12 +291,14 @@ function finalizarBatallas() {
     ranking.forEach(j => {
         const fila = document.createElement("tr");
         fila.innerHTML = `<td>${j.nombre}</td><td>${j.puntos}</td><td>${j.dinero}</td>`;
+
+        
         tablaBody.appendChild(fila);
     });
 
     const contenedorResultado = document.getElementById("texto");
     const jugadorMurio = jugador.vida <= 0;
-    const nivelJugadorFinal = jugadorMurio ? "Novato" : (jugador.puntos >= 50 ? "Veterano" : "Novato");
+    const nivelJugadorFinal = jugadorMurio ? "Novato" : (jugador.puntos >= 500 ? "Veterano" : "Novato");
 
     contenedorResultado.innerHTML = `<p>${jugador.nombre} ha logrado ser un <strong>${nivelJugadorFinal}</strong></p>
                                     <p>Puntos Totales: ${jugador.puntos}</p>`;
@@ -336,12 +313,11 @@ function finalizarBatallas() {
             const timeLeft = animationEnd - Date.now();
             if (timeLeft <= 0) { clearInterval(interval); return; }
             const particleCount = 50 * (timeLeft / duration);
-            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1,0.3), y: Math.random()-0.2 } });
-            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7,0.9), y: Math.random()-0.2 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
         }, 250);
     }
 }
-
 
 document.getElementById("botonEnemigos").addEventListener("click", () => {
     escena4.style.display = "none";
@@ -349,21 +325,24 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
 
     const batalla = document.getElementById("batallas");
     const continuarBtn = document.getElementById("batallasBtn");
-    
 
-    function mostrarBatalla(){
+    /**
+     * Muestra la batalla actual y gestiona la progresión de las batallas.
+     * Si el jugador ha muerto o no hay más enemigos, llama a finalizarBatallas y define la función.
+     */
+    function mostrarBatalla() {
         if (jugador.vida <= 0 || indiceBatallaActual >= EnemigosData.length) {
             finalizarBatallas();
             continuarBtn.onclick = null;
             return;
-    }
+        }
 
         const enemigoActual = EnemigosData[indiceBatallaActual];
 
         batalla.innerHTML = "";
 
         const contenedorImg = document.createElement("div");
-    contenedorImg.className = "contenedorImgBatallas";
+        contenedorImg.className = "contenedorImgBatallas";
 
         const imagenJugador = document.createElement("img");
         imagenJugador.src = "./imagenes/imgGuerrera.svg";
@@ -383,32 +362,30 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
         contenedorImg.appendChild(vs);
         contenedorImg.appendChild(imagenEnemigo);
 
-                batalla.appendChild(contenedorImg);
-
+        batalla.appendChild(contenedorImg);
 
         const resultado = new Batalla().batalla(enemigoActual, jugador);
         jugador.vida = Math.max(resultado.vidaJugadorFinal, 0);
 
-        
         const resultadoTexto = document.createElement("p");
         resultadoTexto.className = "resultadoBatalla";
 
         if (resultado.vidaJugadorFinal > 0) {
             jugador.dinero = jugador.dinero + resultado.monedas;
-                        jugador.sumarPuntos(resultado.puntos + resultado.monedas);
+            jugador.sumarPuntos(resultado.puntos + resultado.monedas);
 
-            resultadoTexto.textContent = `Ganador: ${jugador.nombre}<br><br> Monedas: ${jugador.dinero}`;
+            resultadoTexto.innerHTML = `<p>Ganador:<strong> ${jugador.nombre}</strong></p><p>Monedas: <strong>${jugador.dinero}</strong></p>`;
 
             for (let i = 0; i < 3; i++) {
                 const imgAnimacionMonedas = document.createElement("img");
                 imgAnimacionMonedas.className = "imgAnimacionMonedas";
                 imgAnimacionMonedas.src = "./imagenes/moneda.png";
                 imgAnimacionMonedas.alt = "monedas";
-                imgAnimacionMonedas.style.left = `${25 + (i * 25)}%`;  // 25%, 50%, 75%
+                imgAnimacionMonedas.style.left = `${25 + (i * 25)}%`;
                 batalla.appendChild(imgAnimacionMonedas);
             }
         } else {
-            resultadoTexto.textContent = `Ganador: ${enemigoActual.nombre}`;
+            resultadoTexto.innerHTML = `Ganador:<strong> ${enemigoActual.nombre}</strong>`;
             jugador.vida = 0;
         }
         batalla.appendChild(resultadoTexto);
@@ -418,10 +395,7 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
 
     mostrarBatalla();
     continuarBtn.onclick = mostrarBatalla;
-    
-
 });
-
 
 document.getElementById("resultadoBtn").addEventListener("click", () => {
     escena6.style.display = "none";
@@ -431,7 +405,7 @@ document.getElementById("resultadoBtn").addEventListener("click", () => {
 document.getElementById("vistaPrincipal").addEventListener("click", () => {
     escena7.style.display = "none";
     escena1.style.display = "block";
-    
+
     formulario.reset();
 
     document.querySelectorAll("#cestaMercado div img").forEach(img => img.remove());
@@ -444,15 +418,14 @@ document.getElementById("vistaPrincipal").addEventListener("click", () => {
 
     indiceBatallaActual = 0;
 
-    if(jugador){
+    if (jugador instanceof Jugador) {
         jugador.vida = jugador.vidaTotal();
         jugador.dinero = DINERO;
         jugador.puntos = 0;
-        jugador.productos = [];
+        jugador.inventario = [];
     }
-    
 
-    if(dinero){
+    if (dinero) {
         dinero.textContent = DINERO;
     }
 });

@@ -1,48 +1,29 @@
+/**
+ * Representa a un enemigo en el juego.
+ */
 export class Enemigo {
+    /**
+     * Creación del enemigo.
+     * @param {string} nombre - Nombre del enemigo.
+     * @param {string} avatar - Ruta de la imagen del enemigo.
+     * @param {string} tipo - Indica el tipo del enemigo.
+     * @param {number} nivelAtaque - Nivel de ataque del enemigo.
+     * @param {number} vidaEnemigo - Vida máxima del enemigo.
+     */
     constructor(nombre, avatar, tipo = "Enemigo", nivelAtaque, vidaEnemigo) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.tipo = tipo;
         this.nivelAtaque = nivelAtaque;
-        this.puntos = 100;
         this.vida = vidaEnemigo;
         this.vidaInicial = vidaEnemigo;
         this.esJefe = false;
     }
 
+    /**
+     * Resetea la vida del enemigo a su valor inicial.
+     */
     reset(){
         this.vida = this.vidaInicial;
-    }
-
-    getNombre() {
-        return this.nombre;
-    }
-
-    setNombre(nombre) {
-        this.nombre = nombre;
-    }
-
-    getAvatar() {
-        return this.avatar;
-    }
-
-    setAvatar(avatar) {
-        this.avatar = avatar;
-    }
-
-    getNivelAtaque() {
-        return this.nivelAtaque;
-    }
-
-    setNivelAtaque(nivelAtaque) {
-        this.nivelAtaque = nivelAtaque;
-    }
-
-    getPuntos() {
-        return this.puntos;
-    }
-
-    setPuntos(puntos) {
-        this.puntos = puntos;
     }
 }
