@@ -46,14 +46,10 @@ function actualizarPuntos() {
     }
     puntosDisponibles.textContent = puntosRestantes;
 
-    if (puntosUsados === 0 || puntosUsados > 10) {
+    if (puntosUsados > 10 || ataque < 0 || defensa < 0 || vida < 100) {
         crearJugadorBtn.disabled = true;
-        if (puntosUsados > 10) {
             mensaje.textContent = "Solo puede repartir 10 puntos."
-        }
-        else {
-            mensaje.textContent = "";
-        }
+        
     } else {
         crearJugadorBtn.disabled = false;
         mensaje.textContent = "";
@@ -93,7 +89,7 @@ document.getElementById("crearJugador").addEventListener("click", (event) => {
     let puntosUsados = ataque + defensa + vidaExtra;
 
     if (ataque < 0 || defensa < 0 || vida < 100 || puntosUsados > 10) {
-        mensaje.textContent = "Valores no válidos o excede 10 puntos";
+        mensajeAviso.textContent = "Valores no válidos o excede 10 puntos";
         return;
     }
 
@@ -102,7 +98,7 @@ document.getElementById("crearJugador").addEventListener("click", (event) => {
     jugador = new Jugador(nombre, ataque, defensa, vida);
 
     let nombreJugador = document.querySelectorAll(".nombreJugador");
-    nombreJugador.forEach(nombre => nombre.textContent = jugador.nombre)
+    nombreJugador.forEach(nombre => nombre.textContent = "🧝‍♀️Nombre: " + jugador.nombre)
 
     let vidaJugador = document.querySelectorAll(".vidaJugador");
     vidaJugador.forEach(vida => vida.textContent = "❤️Vida: " + jugador.vida)
@@ -166,7 +162,7 @@ for (const mercado of mercadoArray) {
     nombreProducto.textContent = mercado.nombre;
 
     let precioProducto = document.createElement("h3");
-    precioProducto.textContent = "💰Precio: " + precioDescuento;
+    precioProducto.textContent = "💰Precio: " + precioDescuento + "€";
 
     let rarezaProducto = document.createElement("h3");
     rarezaProducto.textContent = "🔮Rareza: " + mercado.rareza;
@@ -204,6 +200,7 @@ for (const mercado of mercadoArray) {
                 jugador.anadirObjeto(mercado);
                 jugador.dinero = jugador.dinero - mercado.precio;
                 dinero.textContent = jugador.dinero;
+                errorDinero.textContent = "";
                 tarjMercadoIndividual.classList.add('tarjetaMercado');
                 for (let div of divs) {
                     if (div.querySelector('img') === null) {
@@ -224,6 +221,8 @@ for (const mercado of mercadoArray) {
                 botonAvanzarMercado.style.display = "block";
                 botonAvanzarMercado.style.animation = "none";
                 botonAvanzarMercado.style.cursor = "default";
+                let errorDinero = document.getElementById("errorDinero");
+                errorDinero.textContent = "No puedes comprar más productos";
             }
         }
     });

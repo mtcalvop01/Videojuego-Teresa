@@ -20,7 +20,7 @@
             <h1 class="titulos">Creación del Jugador</h1>
             <form id="formularioJugador">
                 <label>🧝‍♀️Nombre:</label>
-                <input type="text" id="nombre" pattern="^[A-Z][A-Za-z ]{0,19}" required title="Tiene que tener entre 1-20 caracteres y solo se permiten mayúsculas, minúsculas y espacios en blanco">
+                <input type="text" id="nombre" pattern="^[A-Z][A-Za-z ]{0,19}" title="Tiene que tener entre 1-20 caracteres y solo se permiten mayúsculas, minúsculas y espacios en blanco">
     
                 <div id="mensaje"></div>
 
@@ -53,7 +53,8 @@
 
         <div id="escenaEstadoJugador">
             <div class="tarjetaJugador">
-                <img src="./img/images/imagenes/imgGuerrera.svg">
+                <img src="./img/images/imagenes/imgGuerrera.svg" alt="Jugador">
+                <h3 class="nombreJugador"></h3>
                 <h3 class="ataqueJugador"></h3>
                 <h3 class="defensaJugador"></h3>
                 <h3 class="vidaJugador"></h3>
@@ -63,6 +64,7 @@
 
         <div id="escena2">
             <h1 class="titulos">Mercado</h1>
+            <div id="errorDinero"></div>
             <div id="tarjeta-Mercado">
 
             </div><br>
@@ -72,6 +74,7 @@
         <div id="escena3">
             <div class="tarjetaJugador">
                 <img src="./img/images/imagenes/imgGuerrera.svg" alt="jugador">
+                <h3 class="nombreJugador"></h3>
                 <h3 class="vidaJugador">❤️Vida:</h3>
                 <h3 class="ataqueJugador">⚔️Ataque:</h3>
                 <h3 class="defensaJugador">🛡️Defensa:</h3>
