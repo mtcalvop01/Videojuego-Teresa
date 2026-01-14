@@ -3,5 +3,5 @@ export const TIPOS_PRODUCTOS = {ARMA: "Arma", ARMADURA: "Armadura", CONSUMIBLE: 
 export const MULTIPLICADOR_DANIO = 1.2;
 export const PUNTOS_BASE_VICTORIA = 100;
 export const UMBRAL_VETERANO = 500;
-export const IMG_JUGADOR = "./imagenes/imgJugador.png";
+export const IMG_JUGADOR = "./img/images/imagenes/imgJugador.png";
 export const DINERO = 500;

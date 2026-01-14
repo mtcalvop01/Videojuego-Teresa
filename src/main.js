@@ -357,7 +357,7 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
         contenedorImg.className = "contenedorImgBatallas";
 
         const imagenJugador = document.createElement("img");
-        imagenJugador.src = "./imagenes/imgGuerrera.svg";
+        imagenJugador.src = "./img/image/imagenes/imgGuerrera.svg";
         imagenJugador.alt = jugador.nombre;
         imagenJugador.className = "imgBatallaJugador";
 
@@ -391,7 +391,7 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
             for (let i = 0; i < 3; i++) {
                 const imgAnimacionMonedas = document.createElement("img");
                 imgAnimacionMonedas.className = "imgAnimacionMonedas";
-                imgAnimacionMonedas.src = "./imagenes/moneda.png";
+                imgAnimacionMonedas.src = "./img/images/imagenes/moneda.png";
                 imgAnimacionMonedas.alt = "monedas";
                 imgAnimacionMonedas.style.left = `${25 + (i * 25)}%`;
                 batalla.appendChild(imgAnimacionMonedas);

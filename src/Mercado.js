@@ -52,13 +52,13 @@ export class Mercado {
  * @type {Producto[]}
  */
 export const mercadoArray = [
-    new Producto("Espada de Hierro", "./Imagenes/espada_hierro.svg", 80, "común", TIPOS_PRODUCTOS.ARMA, { ataque: 5 }),
-    new Producto("Armadura de Cuero", "./Imagenes/armadura.svg", 70, "común", TIPOS_PRODUCTOS.ARMADURA, { defensa: 3 }),
-    new Producto("Poción de Vida", "./Imagenes/pocion_vida.svg", 50, "común", TIPOS_PRODUCTOS.CONSUMIBLE, { curacion: 40 }),
-    new Producto("Cuchillo de la Muerte", "./Imagenes/cuchillo.svg", 150, "raro", TIPOS_PRODUCTOS.ARMA, { ataque: 12 }),
-    new Producto("Escudo del Dragón", "./Imagenes/escudo_dragon.svg", 150, "raro", TIPOS_PRODUCTOS.ARMADURA, { defensa: 10 }),
-    new Producto("Anillo de Mana", "./Imagenes/anillo.svg", 300, "raro", "accesorio", { mana: 30 }),
-    new Producto("Espada Legendaria", "./Imagenes/espada_legendaria.svg", 250, "legendario", TIPOS_PRODUCTOS.ARMA, { ataque: 25 }),
-    new Producto("Armadura Sagrada", "./Imagenes/armadura_sagrada.svg", 200, "legendario", TIPOS_PRODUCTOS.ARMADURA, { defensa: 20 }),
-    new Producto("Botas del Veloz", "./Imagenes/botas.svg", 300, "legendario", TIPOS_PRODUCTOS.ARMADURA, { velocidad: 5 })
+    new Producto("Espada de Hierro", "./img/images/imagenes/espada_hierro.svg", 80, "común", TIPOS_PRODUCTOS.ARMA, { ataque: 5 }),
+    new Producto("Armadura de Cuero", "./img/image/imagenes/armadura.svg", 70, "común", TIPOS_PRODUCTOS.ARMADURA, { defensa: 3 }),
+    new Producto("Poción de Vida", "./img/image/imagenes/pocion_vida.svg", 50, "común", TIPOS_PRODUCTOS.CONSUMIBLE, { curacion: 40 }),
+    new Producto("Cuchillo de la Muerte", "./img/image/imagenes/cuchillo.svg", 150, "raro", TIPOS_PRODUCTOS.ARMA, { ataque: 12 }),
+    new Producto("Escudo del Dragón", "./img/images/imagenes/escudo_dragon.svg", 150, "raro", TIPOS_PRODUCTOS.ARMADURA, { defensa: 10 }),
+    new Producto("Anillo de Mana", "./img/images/imagenes/anillo.svg", 300, "raro", "accesorio", { mana: 30 }),
+    new Producto("Espada Legendaria", "./img/images/imagenes/espada_legendaria.svg", 250, "legendario", TIPOS_PRODUCTOS.ARMA, { ataque: 25 }),
+    new Producto("Armadura Sagrada", "./img/images/imagenes/armadura_sagrada.svg", 200, "legendario", TIPOS_PRODUCTOS.ARMADURA, { defensa: 20 }),
+    new Producto("Botas del Veloz", "./img/images/imagenes/botas.svg", 300, "legendario", TIPOS_PRODUCTOS.ARMADURA, { velocidad: 5 })
 ];
