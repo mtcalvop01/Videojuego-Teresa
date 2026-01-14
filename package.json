@@ -2,9 +2,7 @@
   "devDependencies": {
     "jsdoc": "^4.0.5"
   },
-
-  "scripts":{
+  "scripts": {
     "docs": "jsdoc -c jsdoc.json"
   }
 }
-

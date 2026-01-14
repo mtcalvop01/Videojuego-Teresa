@@ -1,9 +1,36 @@
-import { Jugador } from './src/Jugador.js';
-import { Batalla } from './src/Batalla.js';
-import { EnemigosData } from './src/EnemigosData.js';
-import { mercadoArray } from './src/Mercado.js';
-import { VIDA_BASE, TIPOS_PRODUCTOS, MULTIPLICADOR_DANIO, PUNTOS_BASE_VICTORIA, UMBRAL_VETERANO, DINERO } from './src/constants.js';
-import { Enemigo } from './src/Enemigos.js';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {Jugador} from './Jugador.js'
+import { Batalla } from './Batalla.js';
+import { EnemigosData } from './EnemigosData.js';
+import { mercadoArray } from './Mercado.js';
+import { DINERO } from './constants.js';
 
 const escena1 = document.getElementById("escena1");
 const escenaEstadoJugador = document.getElementById("escenaEstadoJugador");
@@ -42,7 +69,7 @@ function actualizarPuntos() {
     let puntosUsados = ataque + defensa + vidaExtra;
     let puntosRestantes = 10 - puntosUsados;
 
-    if (puntosRestantes < 0) {
+    if (puntosRestantes &lt; 0) {
         puntosRestantes = 0;
     }
     puntosDisponibles.textContent = puntosRestantes;
@@ -93,7 +120,7 @@ document.getElementById("crearJugador").addEventListener("click", (event) => {
     let vidaExtra = vida - 100;
     let puntosUsados = ataque + defensa + vidaExtra;
 
-    if (ataque < 0 || defensa < 0 || vida < 100 || puntosUsados > 10) {
+    if (ataque &lt; 0 || defensa &lt; 0 || vida &lt; 100 || puntosUsados > 10) {
         mensaje.textContent = "Valores no válidos o excede 10 puntos";
         return;
     }
@@ -298,18 +325,18 @@ function finalizarBatallas() {
     tablaBody.innerHTML = "";
     ranking.forEach(j => {
         const fila = document.createElement("tr");
-        fila.innerHTML = `<td>${j.nombre}</td><td>${j.puntos}</td><td>${j.dinero}</td>`;
+        fila.innerHTML = `&lt;td>${j.nombre}&lt;/td>&lt;td>${j.puntos}&lt;/td>&lt;td>${j.dinero}&lt;/td>`;
 
 
         tablaBody.appendChild(fila);
     });
 
     const contenedorResultado = document.getElementById("texto");
-    const jugadorMurio = jugador.vida <= 0;
+    const jugadorMurio = jugador.vida &lt;= 0;
     const nivelJugadorFinal = jugadorMurio ? "Novato" : (jugador.puntos >= 500 ? "Veterano" : "Novato");
 
-    contenedorResultado.innerHTML = `<p>${jugador.nombre} ha logrado ser un <strong>${nivelJugadorFinal}</strong></p>
-                                    <p>Puntos Totales: ${jugador.puntos}</p>`;
+    contenedorResultado.innerHTML = `&lt;p>${jugador.nombre} ha logrado ser un &lt;strong>${nivelJugadorFinal}&lt;/strong>&lt;/p>
+                                    &lt;p>Puntos Totales: ${jugador.puntos}&lt;/p>`;
 
     if (nivelJugadorFinal === "Veterano") {
         const duration = 15 * 1000;
@@ -319,7 +346,7 @@ function finalizarBatallas() {
 
         const interval = setInterval(() => {
             const timeLeft = animationEnd - Date.now();
-            if (timeLeft <= 0) { clearInterval(interval); return; }
+            if (timeLeft &lt;= 0) { clearInterval(interval); return; }
             const particleCount = 50 * (timeLeft / duration);
             confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
             confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
@@ -344,7 +371,7 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
      * Si el jugador ha muerto o no hay más enemigos, llama a finalizarBatallas y define la función.
      */
     function mostrarBatalla() {
-        if (jugador.vida <= 0 || indiceBatallaActual >= EnemigosData.length) {
+        if (jugador.vida &lt;= 0 || indiceBatallaActual >= EnemigosData.length) {
             finalizarBatallas();
             continuarBtn.onclick = null;
             return;
@@ -387,9 +414,9 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
             jugador.dinero = jugador.dinero + resultado.monedas;
             jugador.sumarPuntos(resultado.puntos + resultado.monedas);
 
-            resultadoTexto.innerHTML = `<p>Ganador:<strong> ${jugador.nombre}</strong></p><p>Monedas: <strong>${jugador.dinero}</strong></p>`;
+            resultadoTexto.innerHTML = `&lt;p>Ganador:&lt;strong> ${jugador.nombre}&lt;/strong>&lt;/p>&lt;p>Monedas: &lt;strong>${jugador.dinero}&lt;/strong>&lt;/p>`;
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i &lt; 3; i++) {
                 const imgAnimacionMonedas = document.createElement("img");
                 imgAnimacionMonedas.className = "imgAnimacionMonedas";
                 imgAnimacionMonedas.src = "./imagenes/moneda.png";
@@ -398,7 +425,7 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
                 batalla.appendChild(imgAnimacionMonedas);
             }
         } else {
-            resultadoTexto.innerHTML = `Ganador:<strong> ${enemigoActual.nombre}</strong>`;
+            resultadoTexto.innerHTML = `Ganador:&lt;strong> ${enemigoActual.nombre}&lt;/strong>`;
             jugador.vida = 0;
         }
         batalla.appendChild(resultadoTexto);
@@ -441,4 +468,26 @@ document.getElementById("vistaPrincipal").addEventListener("click", () => {
     if (dinero) {
         dinero.textContent = DINERO;
     }
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Batalla.html">Batalla</a></li><li><a href="Enemigo.html">Enemigo</a></li><li><a href="Jefe.html">Jefe</a></li><li><a href="Jugador.html">Jugador</a></li><li><a href="Mercado.html">Mercado</a></li><li><a href="Producto.html">Producto</a></li></ul><h3>Global</h3><ul><li><a href="global.html#EnemigosData">EnemigosData</a></li><li><a href="global.html#actualizarPuntos">actualizarPuntos</a></li><li><a href="global.html#clasificacionJugador">clasificacionJugador</a></li><li><a href="global.html#finalizarBatallas">finalizarBatallas</a></li><li><a href="global.html#mercadoArray">mercadoArray</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Jan 14 2026 17:43:18 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
