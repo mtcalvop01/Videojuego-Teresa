@@ -27,7 +27,7 @@
 }
 
 #escena1, #escenaEstadoJugador, #escena2, #escena3, #escena4, #escena5, #escena6, #escena7{
-    background-image: url("./imagenes/fondo.svg");
+    background-image: url("./img/images/imagenes/fondo.svg");
     background-size: 16px 16px;
     background-repeat: repeat;
     flex-direction: column;
