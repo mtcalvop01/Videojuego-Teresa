@@ -53,9 +53,9 @@ export class Mercado {
  */
 export const mercadoArray = [
     new Producto("Espada de Hierro", "./img/images/imagenes/espada_hierro.svg", 80, "común", TIPOS_PRODUCTOS.ARMA, { ataque: 5 }),
-    new Producto("Armadura de Cuero", "./img/image/imagenes/armadura.svg", 70, "común", TIPOS_PRODUCTOS.ARMADURA, { defensa: 3 }),
-    new Producto("Poción de Vida", "./img/image/imagenes/pocion_vida.svg", 50, "común", TIPOS_PRODUCTOS.CONSUMIBLE, { curacion: 40 }),
-    new Producto("Cuchillo de la Muerte", "./img/image/imagenes/cuchillo.svg", 150, "raro", TIPOS_PRODUCTOS.ARMA, { ataque: 12 }),
+    new Producto("Armadura de Cuero", "./img/images/imagenes/armadura.svg", 70, "común", TIPOS_PRODUCTOS.ARMADURA, { defensa: 3 }),
+    new Producto("Poción de Vida", "./img/images/imagenes/pocion_vida.svg", 50, "común", TIPOS_PRODUCTOS.CONSUMIBLE, { curacion: 40 }),
+    new Producto("Cuchillo de la Muerte", "./img/images/imagenes/cuchillo.svg", 150, "raro", TIPOS_PRODUCTOS.ARMA, { ataque: 12 }),
     new Producto("Escudo del Dragón", "./img/images/imagenes/escudo_dragon.svg", 150, "raro", TIPOS_PRODUCTOS.ARMADURA, { defensa: 10 }),
     new Producto("Anillo de Mana", "./img/images/imagenes/anillo.svg", 300, "raro", "accesorio", { mana: 30 }),
     new Producto("Espada Legendaria", "./img/images/imagenes/espada_legendaria.svg", 250, "legendario", TIPOS_PRODUCTOS.ARMA, { ataque: 25 }),

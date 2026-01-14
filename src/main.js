@@ -357,7 +357,7 @@ document.getElementById("botonEnemigos").addEventListener("click", () => {
         contenedorImg.className = "contenedorImgBatallas";
 
         const imagenJugador = document.createElement("img");
-        imagenJugador.src = "./img/image/imagenes/imgGuerrera.svg";
+        imagenJugador.src = "./img/images/imagenes/imgGuerrera.svg";
         imagenJugador.alt = jugador.nombre;
         imagenJugador.className = "imgBatallaJugador";
 
