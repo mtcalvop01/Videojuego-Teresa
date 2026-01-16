@@ -5,6 +5,8 @@
 }
 body{
     font-size: 1rem;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #contenedor{
@@ -12,7 +14,6 @@ body{
     height: 70vh;
     display: flex;
     flex-direction: column;
-    
 }
 
 .imgFondo{
@@ -269,7 +270,8 @@ body{
     padding: 0 10px; 
     background-color: rgb(121, 199, 138);
     color: white;
-    height: 10vh;   
+    height: 10vh;  
+    position:relative; 
 }
 
 .imagenJugador {
@@ -376,7 +378,7 @@ footer{
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 20vh;
+    max-height: 20vh;
 }
 
 #cestaMercado{
@@ -420,6 +422,31 @@ footer{
     left: 10px;
     top:10px;
     animation: mover 3s ease;
+}
+
+#topSecret{
+background-color: gray;
+width: 20vh;
+position: absolute;
+display: block;
+margin-left: 85%;
+transition: all 0.3s ease;
+top:115px;
+z-index: -1;
+padding:1%;
+margin-right: 3%;
+}
+
+#topSecret:hover{
+    transform: translateY(-100px);
+}
+
+#topSecret h1{
+    font-size: 1.5rem;
+}
+
+#topSecret p{
+    padding: 2px;
 }
 
 #dinero img{
@@ -543,6 +570,11 @@ footer{
     #batallas {
         gap: 30px;
     }
+
+    #topSecret{
+        margin-right: 3%;
+    }
+
 }
 
 @media (max-width: 360px) {
@@ -644,6 +676,10 @@ footer{
         font-size: 12px;
         top: 27px;
         left: 15px;
+    }
+
+    #topSecret{
+        margin-right: 3%;
     }
 }
 
