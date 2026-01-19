@@ -39,7 +39,7 @@ export class Batalla {
         }
         let ganador;
         let puntos = 0;
-        let esJefe = typeof enemigo.multiplicadordanio === "number";
+        let esJefe = typeof enemigo.multiplicadorDanio === "number";
         let monedas = 0;
 
         if (auxVidaJugador > 0) {
@@ -52,7 +52,6 @@ export class Batalla {
         return { ganador, puntos, monedas, vidaJugadorFinal: auxVidaJugador, vidaEnemigoFinal: auxVidaEnemigo };
     }
 
-
     /**
      * Calcula los puntos que obtiene el jugador tras vencer al enemigo.
      * Si el enemigo es un jefe, los puntos se multiplican por su multiplicador de daño.
@@ -61,9 +60,9 @@ export class Batalla {
      */
     calcularPuntos(enemigo) {
         let puntos = PUNTOS_BASE_VICTORIA + enemigo.nivelAtaque;
-        let esJefe = typeof enemigo.multiplicadordanio === "number";
+        let esJefe = typeof enemigo.multiplicadorDanio === "number";
         if (esJefe) {
-            puntos *= enemigo.multiplicadordanio;
+            puntos *= enemigo.multiplicadorDanio;
 
         }
         return Math.round(puntos);

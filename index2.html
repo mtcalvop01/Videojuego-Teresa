@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='es'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"> 
+    <script type="module" src='./script.js' defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <title>Videojuego Teresa</title>
+</head>
+
+<body>
+            <h1 class="titulos">Creación de Productos</h1>
+            <form id="FormularioProducto">
+                <label>Nombre Producto:</label>
+                <input type="text" id="nombreProducto">
+                <span class="error" id="errorNombre"></span>
+
+                <label>Precio:</label>
+                <input type="number" id="precioProducto">
+                <span class="error" id="errorPrecio"></span>
+
+                <label>Rareza:</label><br>
+                <select id="rarezas">
+                    <option value="Común">Común</option>
+                    <option value="Raro">Raro</option>
+                    <option value="Épico">Épico</option>
+                </select>
+
+                <label>Tipo:</label><br>
+                <select id="tipo">
+                    <option value="Armadura">Armadura</option>
+                    <option value="Arma">Arma</option>
+                    <option value="Consumible">Consumible</option>
+                </select>
+
+                <label>Bonus:</label>
+                <input type="text" id="bonusProducto">
+                <span class="error" id="errorBonus"></span>
+
+                <label>Imagen:</label>
+                <input type="file" id="imagenProducto"><br>
+
+                <input type="submit" value="Añadir Producto" id="btnAñadir">
+
+            </form>
+
+        
+</body>
+
+</html>
